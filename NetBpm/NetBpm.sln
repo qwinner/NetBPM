@@ -1,0 +1,69 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetBpm", "src\NetBpm\NetBpm.csproj", "{217B1A85-1CB7-475E-889D-C0AA74175FE2}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetBpm.Test", "src\NetBpm.Test\NetBpm.Test.csproj", "{53967D23-C4DE-4F3C-8123-92321FE0186C}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetBpm.Web", "http://localhost/netbpm/NetBpm.Web.csproj", "{9896C301-0A50-4973-9BCC-C99B5CEB2F1E}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetBpm.Example", "src\NetBpm.Example\NetBpm.Example.csproj", "{489D941E-858F-4E30-94DF-31CD425666A4}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetBpm.Ext", "src\NetBpm.Ext\NetBpm.Ext.csproj", "{DC7D4006-1075-405B-A810-B0E71C3958E4}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetBpm.Ext.Test", "src\NetBpm.Ext.Test\NetBpm.Ext.Test.csproj", "{15C01168-FC81-40F0-AF76-8F02881B6C58}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetBpm.VersionTest", "src\NetBpm.Example\process\versiontest\src\v1\NetBpm.VersionTest\NetBpm.VersionTest.csproj", "{47979F80-6C3A-4951-A6D3-0217833A6F37}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{217B1A85-1CB7-475E-889D-C0AA74175FE2}.Debug.ActiveCfg = Debug|.NET
+		{217B1A85-1CB7-475E-889D-C0AA74175FE2}.Debug.Build.0 = Debug|.NET
+		{217B1A85-1CB7-475E-889D-C0AA74175FE2}.Release.ActiveCfg = Release|.NET
+		{217B1A85-1CB7-475E-889D-C0AA74175FE2}.Release.Build.0 = Release|.NET
+		{53967D23-C4DE-4F3C-8123-92321FE0186C}.Debug.ActiveCfg = Debug|.NET
+		{53967D23-C4DE-4F3C-8123-92321FE0186C}.Debug.Build.0 = Debug|.NET
+		{53967D23-C4DE-4F3C-8123-92321FE0186C}.Release.ActiveCfg = Release|.NET
+		{53967D23-C4DE-4F3C-8123-92321FE0186C}.Release.Build.0 = Release|.NET
+		{9896C301-0A50-4973-9BCC-C99B5CEB2F1E}.Debug.ActiveCfg = Debug|.NET
+		{9896C301-0A50-4973-9BCC-C99B5CEB2F1E}.Debug.Build.0 = Debug|.NET
+		{9896C301-0A50-4973-9BCC-C99B5CEB2F1E}.Release.ActiveCfg = Release|.NET
+		{9896C301-0A50-4973-9BCC-C99B5CEB2F1E}.Release.Build.0 = Release|.NET
+		{489D941E-858F-4E30-94DF-31CD425666A4}.Debug.ActiveCfg = Debug|.NET
+		{489D941E-858F-4E30-94DF-31CD425666A4}.Debug.Build.0 = Debug|.NET
+		{489D941E-858F-4E30-94DF-31CD425666A4}.Release.ActiveCfg = Release|.NET
+		{489D941E-858F-4E30-94DF-31CD425666A4}.Release.Build.0 = Release|.NET
+		{DC7D4006-1075-405B-A810-B0E71C3958E4}.Debug.ActiveCfg = Debug|.NET
+		{DC7D4006-1075-405B-A810-B0E71C3958E4}.Debug.Build.0 = Debug|.NET
+		{DC7D4006-1075-405B-A810-B0E71C3958E4}.Release.ActiveCfg = Release|.NET
+		{DC7D4006-1075-405B-A810-B0E71C3958E4}.Release.Build.0 = Release|.NET
+		{15C01168-FC81-40F0-AF76-8F02881B6C58}.Debug.ActiveCfg = Debug|.NET
+		{15C01168-FC81-40F0-AF76-8F02881B6C58}.Debug.Build.0 = Debug|.NET
+		{15C01168-FC81-40F0-AF76-8F02881B6C58}.Release.ActiveCfg = Release|.NET
+		{15C01168-FC81-40F0-AF76-8F02881B6C58}.Release.Build.0 = Release|.NET
+		{47979F80-6C3A-4951-A6D3-0217833A6F37}.Debug.ActiveCfg = Debug|.NET
+		{47979F80-6C3A-4951-A6D3-0217833A6F37}.Debug.Build.0 = Debug|.NET
+		{47979F80-6C3A-4951-A6D3-0217833A6F37}.Release.ActiveCfg = Release|.NET
+		{47979F80-6C3A-4951-A6D3-0217833A6F37}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

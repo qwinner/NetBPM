@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.0">
+    <class
+        name="NetBpm.Workflow.Definition.Impl.TransitionImpl, NetBpm"
+        table="NBPM_TRANSITION"
+        dynamic-update="false"
+        dynamic-insert="false"
+    >
+
+        <id
+            name="Id"
+            column="id"
+            type="long"
+            unsaved-value="0"
+        >
+            <generator class="increment">
+            </generator>
+        </id>
+
+        <many-to-one
+            name="From"
+            class="NetBpm.Workflow.Definition.Impl.NodeImpl, NetBpm"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            column="from_"
+        />
+
+        <many-to-one
+            name="To"
+            class="NetBpm.Workflow.Definition.Impl.NodeImpl, NetBpm"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            column="to_"
+        />
+
+        <property
+            name="Name"
+            type="string"
+            update="true"
+            insert="true"
+            column="name"
+        />
+
+        <property
+            name="Description"
+            type="string"
+            update="true"
+            insert="true"
+            column="description"
+        />
+
+        <many-to-one
+            name="ProcessDefinition"
+            class="NetBpm.Workflow.Definition.Impl.ProcessDefinitionImpl, NetBpm"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            column="processDefinition"
+        />
+
+    </class>
+
+</hibernate-mapping>

@@ -1,0 +1,179 @@
+<jgx-1.0>
+<model>
+	<a class="start" id="1" val="1" rect="162,18,25,25" attr="0">
+	<jbpmdata>
+	    <start-state-vO><process-definition><name>Holiday request</name><responsible>ae</responsible><description>This process manages a planned absence of an employee.</description><attribute-list xsi:type="java:org.jbpm.gpd.model.AttributeVO" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><initial-value></initial-value><name>requester</name><serializer></serializer><type>actor</type></attribute-list><attribute-list xsi:type="java:org.jbpm.gpd.model.AttributeVO" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><initial-value></initial-value><name>boss</name><serializer></serializer><type>actor</type></attribute-list><attribute-list xsi:type="java:org.jbpm.gpd.model.AttributeVO" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><initial-value></initial-value><name>hr-responsible</name><serializer></serializer><type>actor</type></attribute-list><attribute-list xsi:type="java:org.jbpm.gpd.model.AttributeVO" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><initial-value></initial-value><name>start date</name><serializer></serializer><type>date</type></attribute-list><attribute-list xsi:type="java:org.jbpm.gpd.model.AttributeVO" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><initial-value></initial-value><name>end date</name><serializer></serializer><type>date</type></attribute-list><attribute-list xsi:type="java:org.jbpm.gpd.model.AttributeVO" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><initial-value>Put your comments here.</initial-value><name>comment</name><serializer></serializer><type>text</type></attribute-list><attribute-list xsi:type="java:org.jbpm.gpd.model.AttributeVO" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><initial-value></initial-value><name>evaluation result</name><serializer></serializer><type>evaluation</type></attribute-list></process-definition><field-list xsi:type="java:org.jbpm.gpd.model.FieldVO" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><access>write-only-required</access><name>Startdate</name><formatter><formaterclass>org.jbpm.workflow.delegation.impl.htmlformatter.DateInput</formaterclass><parameter-list xsi:type="java:org.jbpm.gpd.model.ParameterVO"><name>dateFormat</name><value>dd/MM/yyyy</value></parameter-list></formatter><attribute>start date</attribute><description>Put here the start date of the holiday you want to request (the start-day is included in the holiday-period)</description></field-list><field-list xsi:type="java:org.jbpm.gpd.model.FieldVO" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><access>write-only-required</access><name>Enddate</name><formatter><formaterclass>org.jbpm.workflow.delegation.impl.htmlformatter.DateInput</formaterclass><parameter-list xsi:type="java:org.jbpm.gpd.model.ParameterVO"><name>dateFormat</name><value>dd/MM/yyyy</value></parameter-list></formatter><attribute>end date</attribute><description>Put here the start date of the holiday you want to request (the end-day is included in the holiday-period)</description></field-list><field-list xsi:type="java:org.jbpm.gpd.model.FieldVO" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><access>write-only</access><name>Comment</name><formatter><formaterclass>org.jbpm.workflow.delegation.impl.htmlformatter.TextAreaInput</formaterclass><parameter-list xsi:type="java:org.jbpm.gpd.model.ParameterVO"><name>rows</name><value>5</value></parameter-list><parameter-list xsi:type="java:org.jbpm.gpd.model.ParameterVO"><name>cols</name><value>20</value></parameter-list></formatter><attribute>comment</attribute><description>Free format comments</description></field-list><name>start holiday request</name><description>start a request for a holiday</description><role>requester</role></start-state-vO>
+	</jbpmdata>
+		<a class="port" id="2">
+		<jbpmdata>
+		</jbpmdata>
+		</a>
+	</a>
+	<a class="end" id="3" val="1" rect="222,396,25,25" attr="0">
+	<jbpmdata>
+	    <end-vO><name>end</name></end-vO>
+	</jbpmdata>
+		<a class="port" id="4">
+		<jbpmdata>
+		</jbpmdata>
+		</a>
+	</a>
+	<a class="activity" id="5" val="1" rect="132,60,97,85" attr="0">
+	<jbpmdata>
+	    <activity-state-vO><field-list xsi:type="java:org.jbpm.gpd.model.FieldVO" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><access>read-only</access><name>Requester</name><formatter><formaterclass>org.jbpm.workflow.delegation.impl.htmlformatter.PersonLabel</formaterclass></formatter><attribute>requester</attribute><description>This is the person requesting the holiday</description></field-list><field-list xsi:type="java:org.jbpm.gpd.model.FieldVO" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><access>read-only</access><name>Startdate</name><formatter><formaterclass>org.jbpm.workflow.delegation.impl.htmlformatter.DateLabel</formaterclass><parameter-list xsi:type="java:org.jbpm.gpd.model.ParameterVO"><name>dateFormat</name><value>dd/MM/yyyy</value></parameter-list></formatter><attribute>start date</attribute><description></description></field-list><field-list xsi:type="java:org.jbpm.gpd.model.FieldVO" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><access>read-only</access><name>Enddate</name><formatter><formaterclass>org.jbpm.workflow.delegation.impl.htmlformatter.DateLabel</formaterclass><parameter-list xsi:type="java:org.jbpm.gpd.model.ParameterVO"><name>dateFormat</name><value>dd/MM/yyyy</value></parameter-list></formatter><attribute>end date</attribute><description></description></field-list><field-list xsi:type="java:org.jbpm.gpd.model.FieldVO" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><access>write-only</access><name>Evaluation result</name><formatter><formaterclass>org.jbpm.workflow.delegation.impl.htmlformatter.EvaluationInput</formaterclass></formatter><attribute>evaluation result</attribute><description>Please, decide on the holiday-request of your employee.</description></field-list><name>evaluating</name><action-list xsi:type="java:org.jbpm.gpd.model.ActionVO" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><on-exception>log</on-exception><handler>org.jbpm.workflow.delegation.impl.action.MsgQueueAction</handler><event>transition</event><parameter-list xsi:type="java:org.jbpm.gpd.model.ParameterVO"><name>msg.destination.jndi.name</name><value>queue/A</value></parameter-list><parameter-list xsi:type="java:org.jbpm.gpd.model.ParameterVO"><name>msg.connection.factory.jndi.name</name><value>ConnectionFactory</value></parameter-list><parameter-list xsi:type="java:org.jbpm.gpd.model.ParameterVO"><name>msg.text</name><value>a holiday was requested from ${start date} to ${end date} with comment ${comment}</value></parameter-list></action-list><action-list xsi:type="java:org.jbpm.gpd.model.ActionVO" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><on-exception>log</on-exception><handler>org.jbpm.workflow.delegation.impl.action.EmailAction</handler><event>transition</event><parameter-list xsi:type="java:org.jbpm.gpd.model.ParameterVO"><name>to</name><value>previousActor</value></parameter-list><parameter-list xsi:type="java:org.jbpm.gpd.model.ParameterVO"><name>subject</name><value>you requested a holiday</value></parameter-list><parameter-list xsi:type="java:org.jbpm.gpd.model.ParameterVO"><name>message</name><value>you requested a holiday from ${start date} to ${end date} with comment ${comment}</value></parameter-list></action-list><description>In this activity, You have to evaluate the holiday-request of your employee.</description><assignment><handler>org.jbpm.workflow.delegation.impl.assignment.AssignmentExpressionResolver</handler><parameter-list xsi:type="java:org.jbpm.gpd.model.ParameterVO" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><name>expression</name><value>previousActor->group(hierarchy)->role(boss)</value></parameter-list></assignment><role>boss</role></activity-state-vO>
+	</jbpmdata>
+		<a class="port" id="6">
+		<jbpmdata>
+		</jbpmdata>
+		</a>
+	</a>
+	<a class="transition" id="7" val="2" src="2" tgt="6" pts="180,24,180,90" attr="1">
+	<jbpmdata>
+	    <transition-vO/>
+	</jbpmdata>
+	</a>
+	<a class="activity" id="8" val="1" rect="12,288,97,25" attr="0">
+	<jbpmdata>
+	    <activity-state-vO><name>HR notification</name><description>In this activity, You have to register that an employee is taking holiday.</description><assignment><handler>org.jbpm.workflow.delegation.impl.assignment.AssignmentExpressionResolver</handler><parameter-list xsi:type="java:org.jbpm.gpd.model.ParameterVO" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><name>expression</name><value>role(boss)->group(hierarchy)->role(hr-responsible)</value></parameter-list><parameter-list xsi:type="java:org.jbpm.gpd.model.ParameterVO" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><name>expression</name><value>role(boss)->group(hierarchy)->role(hr-responsible)</value></parameter-list></assignment><role>hr-responsible</role></activity-state-vO>
+	</jbpmdata>
+		<a class="port" id="9">
+		<jbpmdata>
+		</jbpmdata>
+		</a>
+	</a>
+	<a class="activity" id="10" val="1" rect="198,282,127,25" attr="0">
+	<jbpmdata>
+	    <activity-state-vO><name>approval notification</name><description>You get notified that your holiday request has been approved.</description><assignment><handler>org.jbpm.workflow.delegation.impl.assignment.AssignmentExpressionResolver</handler><parameter-list xsi:type="java:org.jbpm.gpd.model.ParameterVO" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><name>expression</name><value>role(requester)</value></parameter-list></assignment><role></role></activity-state-vO>
+	</jbpmdata>
+		<a class="port" id="11">
+		<jbpmdata>
+		</jbpmdata>
+		</a>
+	</a>
+	<a class="activity" id="12" val="1" rect="354,282,151,25" attr="0">
+	<jbpmdata>
+	    <activity-state-vO><name>disapproval notification</name><description>This is a notification of the refusal of your holiday request. By submitting this form you declare to have taken notice of the refusal.</description><role>requester</role></activity-state-vO>
+	</jbpmdata>
+		<a class="port" id="13">
+		<jbpmdata>
+		</jbpmdata>
+		</a>
+	</a>
+	<a class="fork" id="14" val="1" rect="66,234,181,25" attr="0">
+	<jbpmdata>
+	    <fork-join-vO><name>approved holiday fork</name></fork-join-vO>
+	</jbpmdata>
+		<a class="port" id="15">
+		<jbpmdata>
+		</jbpmdata>
+		</a>
+	</a>
+	<a class="decision" id="16" val="1" rect="234,174,25,25" attr="0">
+	<jbpmdata>
+	    <decision-vO><name>evaluation</name><handler>org.jbpm.workflow.delegation.impl.decision.EvaluationDecision</handler><parameter-list xsi:type="java:org.jbpm.gpd.model.ParameterVO" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><name>attribute</name><value>evaluation result</value></parameter-list></decision-vO>
+	</jbpmdata>
+		<a class="port" id="17">
+		<jbpmdata>
+		</jbpmdata>
+		</a>
+	</a>
+	<a class="transition" id="18" val="3" src="6" tgt="17" pts="180,90,180,186" attr="1">
+	<jbpmdata>
+	    <transition-vO/>
+	</jbpmdata>
+	</a>
+	<a class="transition" id="19" val="4" src="17" tgt="13" pts="246,186,453,330" attr="1">
+	<jbpmdata>
+	    <transition-vO><name>disapprove</name></transition-vO>
+	</jbpmdata>
+	</a>
+	<a class="join" id="20" val="1" rect="60,342,187,25" attr="0">
+	<jbpmdata>
+	    <fork-join-vO><name>join before finish</name></fork-join-vO>
+	</jbpmdata>
+		<a class="port" id="21">
+		<jbpmdata>
+		</jbpmdata>
+		</a>
+	</a>
+	<a class="transition" id="22" val="5" src="17" tgt="15" pts="180,186,174,228" attr="1">
+	<jbpmdata>
+	    <transition-vO><name>approve</name></transition-vO>
+	</jbpmdata>
+	</a>
+	<a class="transition" id="23" val="6" src="15" tgt="9" pts="174,228,60,321" attr="1">
+	<jbpmdata>
+	    <transition-vO><name>hr</name></transition-vO>
+	</jbpmdata>
+	</a>
+	<a class="transition" id="24" val="7" src="15" tgt="11" pts="162,234,264,312" attr="1">
+	<jbpmdata>
+	    <transition-vO><name>requester</name></transition-vO>
+	</jbpmdata>
+	</a>
+	<a class="transition" id="25" val="8" src="9" tgt="21" pts="60,321,171,414" attr="1">
+	<jbpmdata>
+	    <transition-vO/>
+	</jbpmdata>
+	</a>
+	<a class="transition" id="26" val="9" src="11" tgt="21" pts="261,294,153,354" attr="1">
+	<jbpmdata>
+	    <transition-vO/>
+	</jbpmdata>
+	</a>
+	<a class="transition" id="27" val="10" src="21" tgt="4" pts="171,414,144,510" attr="1">
+	<jbpmdata>
+	    <transition-vO/>
+	</jbpmdata>
+	</a>
+	<a class="transition" id="28" val="11" src="13" tgt="4" attr="1">
+	<jbpmdata>
+	    <transition-vO/>
+	</jbpmdata>
+	</a>
+</model>
+<attrs>
+	<map id="0">
+		<a key="backgroundColor" val="255,255,255"/>
+		<a key="bordercolor" val="0,0,0"/>
+		<a key="opaque" val="true"/>
+	</map>
+	<map id="1">
+		<a key="lineEnd" val="4"/>
+		<a key="labelposition" val="500,500"/>
+	</map>
+</attrs>
+<user>
+	<a key="2" val="null"/>
+	<a key="9" val="null"/>
+	<a key="5" val="approve"/>
+	<a key="6" val="hr"/>
+	<a key="8" val="null"/>
+	<a key="10" val="null"/>
+	<a key="11" val="null"/>
+	<a key="3" val="null"/>
+	<a key="7" val="requester"/>
+	<a key="4" val="disapprove"/>
+	<a key="1" val=""/>
+</user>
+<view>
+	<a key="editable" val="true"/>
+	<a key="bendable" val="true"/>
+	<a key="cloneable" val="true"/>
+	<a key="connectable" val="true"/>
+	<a key="disconnectable" val="true"/>
+	<a key="disconnectOnMove" val="false"/>
+	<a key="doubleBuffered" val="true"/>
+	<a key="dragEnabled" val="false"/>
+	<a key="dropEnabled" val="true"/>
+	<a key="moveable" val="true"/>
+	<a key="sizeable" val="true"/>
+	<a key="selectNewCells" val="true"/>
+	<a key="gridVisible" val="true"/>
+	<a key="gridEnabled" val="true"/>
+	<a key="gridSize" val="6"/>
+	<a key="gridMode" val="0"/>
+	<a key="scale" val="2.0"/>
+	<a key="antiAlias" val="false"/>
+</view>
+</jgx-1.0>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Test for Astro Prime Web Start Deployment -->
+<jnlp spec="1.0+" codebase="http://localhost:8080/gpd" href="gpd.jnlp">
+	<information>
+		<title>GPD</title>
+		<vendor>GPD</vendor>
+		<homepage href="http://www.netbpm.org"/>
+		<description>GPD</description>
+		<description kind="short">GPD</description>
+		<icon href="icon.gif"/>
+		<icon kind="splash" href="splash.gif"/>
+		<offline-allowed/>
+	</information>
+	<security>
+		<all-permissions/>
+	</security>
+	<resources>
+		<j2se href="http://java.sun.com/products/autodl/j2se" version="1.4+"/>
+		<jar href="lib/gpd.jar"/>
+		<jar href="lib/castor-0.9.5.2-xml.jar"/>
+		<jar href="lib/commons-lang.jar"/>
+		<jar href="lib/forms-1.0.4.jar"/>
+		<jar href="lib/jaxen-core.jar"/>
+		<jar href="lib/jaxen-jdom.jar"/>
+		<jar href="lib/jdom.jar"/>
+		<jar href="lib/jgraph.jar"/>
+		<jar href="lib/jgraph-layout.jar"/>
+		<jar href="lib/saxpath.jar"/>
+		<jar href="lib/xercesImpl.jar"/>
+		<jar href="lib/xmlParserAPIs.jar"/>
+		<jar href="lib/jbpm.jar"/>
+		<jar href="lib/commons-collections-2.1.jar"/>
+		<jar href="lib/commons-configuration-1.0-dev-3.jar"/>
+	</resources>
+	<application-desc main-class="org.netbpm.gpd.ProcessDesigner"/>
+</jnlp>

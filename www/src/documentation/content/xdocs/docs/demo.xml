@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright 2002-2005 The Apache Software Foundation or its licensors,
+  as applicable.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE document PUBLIC "-//APACHE//DTD Documentation V2.0//EN" "http://forrest.apache.org/dtd/document-v20.dtd">
+<document> 
+  <header> 
+    <title>Holiday Demo</title> 
+  </header> 
+  <body> 
+    <section>
+      <title>Holiday example movie</title>
+      <p>
+			The movie shows the first steps you can do after the installation of NetBpm. 
+			You will see how to deploy and start workflows. 
+			Further on you will be informed about the functionality of the NetBpm Web application. 
+			But the web application is only an example for the integration of the core functionality in a custom application. 
+			It also is possible to integrate that core functionality in a winForm application.
+      </p>
+      <p>
+			 <a href="http://www.netbpm.org/movie/holiday/holiday.html">start movie</a>
+      </p>
+      <p>
+			If you got curious after watching the video try it yourself at the demo side.
+      </p>
+    </section>
+    <section>
+      <title>Holiday Demo</title>
+      <p>
+			You can find a demo application at <a href="http://gruenauer.homedns.org/netbpm/intro/index.rails">http://gruenauer.homedns.org/netbpm/intro/index.rails</a>. 
+			This is not a permanent website. If the side is down please wait an hour, 
+			if this does not help please inform me by mail (Philipp at netbpm dot org).
+      </p>
+      <p>
+			The demo shows only a small workflow with a webgui and not the integration functionalities of NetBpm. 
+      </p>
+    </section>
+    <section>
+      <title>Short Description</title>
+      <p>
+			The holiday process allows users to manage planned absences. Every employee is able to request holiday. 
+			The requester has to enter the startdate, enddate and a comment. Then this request is presented to the boss of the requester. 
+			The boss evaluates. If the holiday is approved, both the HR-responsible and the requester will be informed.
+			If the holiday is disapproved, only the requester will be notified 
+      </p>
+      <p>Let me introduce the people in my fictive organisation used for demo purposes: </p>
+      <ul>
+        <li>Albert Einstein</li>
+        <li>Carl Gauss</li>
+        <li>Pierre De Fermat</li>
+      </ul>
+      <p>Albert Einstein and Carl Gauss are both in the 'Research and Development'-department.</p>
+      <p>Carl Gauss is the boss of the 'Research and Development'-department.</p>
+      <p>Pierre De Fermat is the 'HR-responsible' for the 'Research and Development'-department.</p>
+    </section>
+
+  </body>
+</document>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.0">
+    <class
+        name="NetBpm.Test.Bank.BankAccount, NetBpm.Test"
+        table="TEST_BANKACCOUNT"
+        dynamic-update="false"
+        dynamic-insert="false"
+        discriminator-value="BankAccount"
+    >
+
+        <id
+            name="Id"
+            column="id"
+            type="long"
+            unsaved-value="0"
+        >
+            <generator class="increment">
+            </generator>
+        </id>
+		<property
+			name="BankName"
+			type="string"
+			length="50"
+			update="true"
+			insert="true"
+			column="bankname"
+		/>
+		<property
+			name="Customer"
+			type="string"
+			length="50"
+			update="true"
+			insert="true"
+			column="costumer"
+		/>
+		<property
+			name="Value"
+			type="float"
+			update="true"
+			insert="true"
+			column="accountValue"
+		/>
+	</class>
+</hibernate-mapping>

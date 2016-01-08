@@ -1,0 +1,1222 @@
+<VisualStudioProject>
+    <CSHARP
+        ProjectType = "Local"
+        ProductVersion = "7.10.3077"
+        SchemaVersion = "2.0"
+        ProjectGuid = "{217B1A85-1CB7-475E-889D-C0AA74175FE2}"
+    >
+        <Build>
+            <Settings
+                ApplicationIcon = ""
+                AssemblyKeyContainerName = ""
+                AssemblyName = "NetBpm"
+                AssemblyOriginatorKeyFile = ""
+                DefaultClientScript = "JScript"
+                DefaultHTMLPageLayout = "Grid"
+                DefaultTargetSchema = "IE50"
+                DelaySign = "false"
+                OutputType = "Library"
+                PreBuildEvent = ""
+                PostBuildEvent = ""
+                RootNamespace = "NetBpm"
+                RunPostBuildEvent = "OnBuildSuccess"
+                StartupObject = ""
+            >
+                <Config
+                    Name = "Debug"
+                    AllowUnsafeBlocks = "false"
+                    BaseAddress = "285212672"
+                    CheckForOverflowUnderflow = "false"
+                    ConfigurationOverrideFile = ""
+                    DefineConstants = "DEBUG;TRACE"
+                    DocumentationFile = ""
+                    DebugSymbols = "true"
+                    FileAlignment = "4096"
+                    IncrementalBuild = "false"
+                    NoStdLib = "false"
+                    NoWarn = ""
+                    Optimize = "false"
+                    OutputPath = "bin\Debug\"
+                    RegisterForComInterop = "false"
+                    RemoveIntegerChecks = "false"
+                    TreatWarningsAsErrors = "false"
+                    WarningLevel = "4"
+                />
+                <Config
+                    Name = "Release"
+                    AllowUnsafeBlocks = "false"
+                    BaseAddress = "285212672"
+                    CheckForOverflowUnderflow = "false"
+                    ConfigurationOverrideFile = ""
+                    DefineConstants = "TRACE"
+                    DocumentationFile = ""
+                    DebugSymbols = "false"
+                    FileAlignment = "4096"
+                    IncrementalBuild = "false"
+                    NoStdLib = "false"
+                    NoWarn = ""
+                    Optimize = "true"
+                    OutputPath = "bin\Release\"
+                    RegisterForComInterop = "false"
+                    RemoveIntegerChecks = "false"
+                    TreatWarningsAsErrors = "false"
+                    WarningLevel = "4"
+                />
+            </Settings>
+            <References>
+                <Reference
+                    Name = "System"
+                    AssemblyName = "System"
+                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.dll"
+                />
+                <Reference
+                    Name = "System.XML"
+                    AssemblyName = "System.Xml"
+                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.XML.dll"
+                />
+                <Reference
+                    Name = "HashCodeProvider"
+                    AssemblyName = "HashCodeProvider"
+                    HintPath = "..\..\lib\HashCodeProvider.dll"
+                />
+                <Reference
+                    Name = "ICSharpCode.SharpZipLib"
+                    AssemblyName = "ICSharpCode.SharpZipLib"
+                    HintPath = "..\..\lib\ICSharpCode.SharpZipLib.dll"
+                />
+                <Reference
+                    Name = "Iesi.Collections"
+                    AssemblyName = "Iesi.Collections"
+                    HintPath = "..\..\lib\Iesi.Collections.dll"
+                />
+                <Reference
+                    Name = "log4net"
+                    AssemblyName = "log4net"
+                    HintPath = "..\..\lib\log4net.dll"
+                />
+                <Reference
+                    Name = "NHibernate"
+                    AssemblyName = "NHibernate"
+                    HintPath = "..\..\lib\NHibernate.dll"
+                />
+                <Reference
+                    Name = "System.Web"
+                    AssemblyName = "System.Web"
+                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Web.dll"
+                />
+                <Reference
+                    Name = "System.Data"
+                    AssemblyName = "System.Data"
+                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Data.dll"
+                />
+                <Reference
+                    Name = "Castle.Windsor"
+                    AssemblyName = "Castle.Windsor"
+                    HintPath = "..\..\lib\Castle\Castle.Windsor.dll"
+                />
+                <Reference
+                    Name = "Castle.MicroKernel"
+                    AssemblyName = "Castle.MicroKernel"
+                    HintPath = "..\..\lib\Castle\Castle.MicroKernel.dll"
+                />
+                <Reference
+                    Name = "Castle.Facilities.NHibernateIntegration"
+                    AssemblyName = "Castle.Facilities.NHibernateIntegration"
+                    HintPath = "..\..\lib\Castle\Castle.Facilities.NHibernateIntegration.dll"
+                />
+                <Reference
+                    Name = "Castle.Services.Transaction"
+                    AssemblyName = "Castle.Services.Transaction"
+                    HintPath = "..\..\lib\Castle\Castle.Services.Transaction.dll"
+                />
+                <Reference
+                    Name = "Castle.Facilities.AutomaticTransactionManagement"
+                    AssemblyName = "Castle.Facilities.AutomaticTransactionManagement"
+                    HintPath = "..\..\lib\Castle\Castle.Facilities.AutomaticTransactionManagement.dll"
+                />
+                <Reference
+                    Name = "Castle.Model"
+                    AssemblyName = "Castle.Model"
+                    HintPath = "..\..\lib\Castle\Castle.Model.dll"
+                />
+                <Reference
+                    Name = "Castle.Facilities.Logging"
+                    AssemblyName = "Castle.Facilities.Logging"
+                    HintPath = "..\..\lib\Castle\Castle.Facilities.Logging.dll"
+                />
+                <Reference
+                    Name = "Nullables.NHibernate"
+                    AssemblyName = "Nullables.NHibernate"
+                    HintPath = "..\..\lib\Nullables.NHibernate.dll"
+                />
+                <Reference
+                    Name = "Nullables"
+                    AssemblyName = "Nullables"
+                    HintPath = "..\..\lib\Nullables.dll"
+                />
+                <Reference
+                    Name = "NAnt.Core"
+                    AssemblyName = "NAnt.Core"
+                    HintPath = "..\..\lib\NAnt.Core.dll"
+                />
+            </References>
+        </Build>
+        <Files>
+            <Include>
+                <File
+                    RelPath = "NetBpmContainer.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ModelSupport\NetBpm\NetBpm.txvpck"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "ModelSupport\NetBpm\Util\Util.txvpck"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "ModelSupport\NetBpm\Util\Client\Client.txvpck"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "ModelSupport\NetBpm\Util\DB\DB.txvpck"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "ModelSupport\NetBpm\Util\EComp\EComp.txvpck"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "ModelSupport\NetBpm\Util\Net\Net.txvpck"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "ModelSupport\NetBpm\Util\Xml\Xml.txvpck"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "ModelSupport\NetBpm\Workflow\Workflow.txvpck"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "ModelSupport\NetBpm\Workflow\Definition\Definition.txvpck"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "ModelSupport\NetBpm\Workflow\Definition\DefinitionDiagram.txvcls"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "ModelSupport\NetBpm\Workflow\Definition\Attr\Attr.txvpck"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "ModelSupport\NetBpm\Workflow\Definition\EComp\EComp.txvpck"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "ModelSupport\NetBpm\Workflow\Definition\EComp\Impl\Impl.txvpck"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "ModelSupport\NetBpm\Workflow\Definition\Impl\Impl.txvpck"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "ModelSupport\NetBpm\Workflow\Delegation\Delegation.txvpck"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "ModelSupport\NetBpm\Workflow\Delegation\ClassLoader\ClassLoader.txvpck"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "ModelSupport\NetBpm\Workflow\Delegation\ClassLoader\Impl\Impl.txvpck"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "ModelSupport\NetBpm\Workflow\Delegation\Impl\Impl.txvpck"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "ModelSupport\NetBpm\Workflow\Delegation\Impl\Action\Action.txvpck"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "ModelSupport\NetBpm\Workflow\Delegation\Impl\Assignment\Assignment.txvpck"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "ModelSupport\NetBpm\Workflow\Delegation\Impl\Decision\Decision.txvpck"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "ModelSupport\NetBpm\Workflow\Delegation\Impl\Fork\Fork.txvpck"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "ModelSupport\NetBpm\Workflow\Delegation\Impl\Htmlformatter\Htmlformatter.txvpck"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "ModelSupport\NetBpm\Workflow\Delegation\Impl\Join\Join.txvpck"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "ModelSupport\NetBpm\Workflow\Delegation\Impl\Serializer\Serializer.txvpck"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "ModelSupport\NetBpm\Workflow\Execution\Execution.txvpck"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "ModelSupport\NetBpm\Workflow\Execution\ExecutionDiagram.txvcls"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "ModelSupport\NetBpm\Workflow\Execution\EComp\EComp.txvpck"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "ModelSupport\NetBpm\Workflow\Execution\Impl\Impl.txvpck"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "ModelSupport\NetBpm\Workflow\Log\Log.txvpck"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "ModelSupport\NetBpm\Workflow\Log\LogDiagram.txvcls"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "ModelSupport\NetBpm\Workflow\Log\EComp\EComp.txvpck"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "ModelSupport\NetBpm\Workflow\Log\Impl\Impl.txvpck"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "ModelSupport\NetBpm\Workflow\Organisation\Organisation.txvpck"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "ModelSupport\NetBpm\Workflow\Organisation\OrganisationDiagram.txvcls"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "ModelSupport\NetBpm\Workflow\Organisation\EComp\EComp.txvpck"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "ModelSupport\NetBpm\Workflow\Organisation\EComp\Impl\Impl.txvpck"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "ModelSupport\NetBpm\Workflow\Organisation\Impl\Impl.txvpck"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "ModelSupport\NetBpm\Workflow\Scheduler\Scheduler.txvpck"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "ModelSupport\NetBpm\Workflow\Scheduler\EComp\EComp.txvpck"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "ModelSupport\NetBpm\Workflow\Scheduler\EComp\Impl\Impl.txvpck"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "ModelSupport\NetBpm\Workflow\Scheduler\Impl\Impl.txvpck"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "Util\Client\Relations.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Util\Client\ServiceLocator.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Util\Db\DbException.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Util\Db\DbSession.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Util\Db\DbType.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Util\Db\NotUniqueException.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Util\Db\ObjectNotFoundException.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Util\Db\PersistentObject.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Util\EComp\AbstractEComp.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Util\NAnt\DeployPar.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Util\Net\ArrayUtil.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Util\Xml\XmlElement.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Util\Xml\XmlParser.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Definition\EventTypeHelper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Definition\FieldAccessHelper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Definition\IAction.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Definition\IActivityState.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Definition\IAttribute.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Definition\IConcurrentBlock.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Definition\IDecision.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Definition\IDefinitionObject.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Definition\IEndState.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Definition\IField.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Definition\IFork.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Definition\IJoin.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Definition\INode.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Definition\IProcessBlock.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Definition\IProcessDefinition.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Definition\IProcessState.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Definition\IStartState.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Definition\IState.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Definition\ITransition.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Definition\NpdlException.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Definition\Attribute\Evaluation.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Definition\EComp\IDefinitionSessionLocal.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Definition\EComp\Impl\DefinitionEComp.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Definition\Impl\ActionImpl.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Definition\Impl\ActionImpl.hbm.xml"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Workflow\Definition\Impl\ActivityStateImpl.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Definition\Impl\AttributeImpl.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Definition\Impl\AttributeImpl.hbm.xml"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Workflow\Definition\Impl\ConcurrentBlockImpl.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Definition\Impl\CreationContext.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Definition\Impl\DecisionImpl.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Definition\Impl\DefinitionComponentImpl.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Definition\Impl\DefinitionObjectImpl.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Definition\Impl\EndStateImpl.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Definition\Impl\FieldImpl.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Definition\Impl\FieldImpl.hbm.xml"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Workflow\Definition\Impl\ForkImpl.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Definition\Impl\JoinImpl.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Definition\Impl\NodeImpl.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Definition\Impl\NodeImpl.hbm.xml"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Workflow\Definition\Impl\ProcessBlockImpl.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Definition\Impl\ProcessBlockImpl.hbm.xml"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Workflow\Definition\Impl\ProcessDefinitionImpl.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Definition\Impl\ProcessStateImpl.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Definition\Impl\StartStateImpl.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Definition\Impl\StateImpl.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Definition\Impl\TransitionImpl.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Definition\Impl\TransitionImpl.hbm.xml"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Workflow\Definition\Impl\UnresolvedReference.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Definition\Impl\ValidationContext.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Delegation\AbstractConfigurable.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Delegation\ExceptionHandlingTypeHelper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Delegation\IActionContext.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Delegation\IActionHandler.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Delegation\IAssignmentContext.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Delegation\IAssignmentHandler.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Delegation\IAuthorizationHandler.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Delegation\IConfigurable.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Delegation\IDecisionContext.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Delegation\IDecisionHandler.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Delegation\IDelegation.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Delegation\IForkContext.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Delegation\IForkHandler.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Delegation\IHandlerContext.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Delegation\IHtmlFormatter.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Delegation\IJoinContext.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Delegation\IJoinHandler.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Delegation\IProcessInvocationContext.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Delegation\IProcessInvocationHandler.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Delegation\ISerializer.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Delegation\ITaskContext.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Delegation\ClassLoader\IClassLoader.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Delegation\ClassLoader\Impl\DBClassLoader.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Delegation\ClassLoader\Impl\DefaultClassLoader.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Delegation\Impl\ActorExpressionResolver.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Delegation\Impl\AssemblyFileImpl.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Delegation\Impl\AssemblyFileImpl.hbm.xml"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Workflow\Delegation\Impl\AttributeExpressionResolver.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Delegation\Impl\AuthorizationHelper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Delegation\Impl\DelegationHelper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Delegation\Impl\DelegationImpl.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Delegation\Impl\DelegationImpl.hbm.xml"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Workflow\Delegation\Impl\Action\EmailAction.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Delegation\Impl\Assignment\AssignmentExpressionResolver.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Delegation\Impl\Decision\EvaluationDecision.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Delegation\Impl\Fork\AndFork.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Delegation\Impl\Htmlformatter\DateInput.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Delegation\Impl\Htmlformatter\DateLabel.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Delegation\Impl\Htmlformatter\EvaluationInput.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Delegation\Impl\Htmlformatter\PersonLabel.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Delegation\Impl\Htmlformatter\TextAreaInput.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Delegation\Impl\Htmlformatter\TextInput.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Delegation\Impl\Join\AndJoin.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Delegation\Impl\Serializer\ActorSerializer.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Delegation\Impl\Serializer\DateSerializer.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Delegation\Impl\Serializer\EvaluationSerializer.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Delegation\Impl\Serializer\FloatSerializer.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Delegation\Impl\Serializer\IntegerSerializer.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Delegation\Impl\Serializer\LongSerializer.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Delegation\Impl\Serializer\TextSerializer.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Execution\AuthorizationException.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Execution\ExecutionComponent.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Execution\ExecutionException.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Execution\IActivityForm.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Execution\IAttributeInstance.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Execution\IFlow.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Execution\IProcessInstance.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Execution\RequiredFieldException.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Execution\EComp\IExecutionSessionLocal.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Execution\EComp\Impl\ExecutionEComp.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Execution\Impl\ActivityFormImpl.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Execution\Impl\AttributeInstanceImpl.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Execution\Impl\AttributeInstanceImpl.hbm.xml"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Workflow\Execution\Impl\ExecutionComponentImpl.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Execution\Impl\ExecutionContextImpl.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Execution\Impl\ExecutionEngineImpl.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Execution\Impl\FlowImpl.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Execution\Impl\FlowImpl.hbm.xml"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Workflow\Execution\Impl\ForkedFlow.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Execution\Impl\ProcessInstanceImpl.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Execution\Impl\ProcessInstanceImpl.hbm.xml"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Workflow\Log\IAttributeUpdate.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Log\IDelegateCall.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Log\IExceptionReport.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Log\ILog.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Log\ILogDetail.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Log\IMessage.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Log\IObjectReference.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Log\LogComponent.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Log\EComp\ILogSessionLocal.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Log\EComp\Impl\LogEComp.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Log\Impl\AttributeUpdateImpl.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Log\Impl\DelegateCallImpl.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Log\Impl\ExceptionReportImpl.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Log\Impl\LogComponentImpl.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Log\Impl\LogDetailImpl.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Log\Impl\LogDetailImpl.hbm.xml"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Workflow\Log\Impl\LogImpl.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Log\Impl\LogImpl.hbm.xml"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Workflow\Log\Impl\MessageImpl.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Log\Impl\ObjectReferenceImpl.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Organisation\IActor.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Organisation\IGroup.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Organisation\IMembership.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Organisation\IUser.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Organisation\OrganisationRuntimeException.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Organisation\OrganisationUtil.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Organisation\PrincipalUserAdapter.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Organisation\EComp\IOrganisationSessionLocal.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Organisation\EComp\Impl\OrganisationEComp.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Organisation\Impl\ActorImpl.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Organisation\Impl\ActorImpl.hbm.xml"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Workflow\Organisation\Impl\GroupImpl.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Organisation\Impl\MembershipImpl.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Organisation\Impl\MembershipImpl.hbm.xml"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Workflow\Organisation\Impl\OrganisationComponentImpl.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Organisation\Impl\UserImpl.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Scheduler\Job.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Scheduler\EComp\ISchedulerSessionLocal.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Scheduler\EComp\Impl\JobThread.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Scheduler\EComp\Impl\SchedulerEComp.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Scheduler\EComp\Impl\SchedulerThread.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Scheduler\Impl\JobImpl.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Scheduler\Impl\JobImpl.hbm.xml"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Workflow\Scheduler\Impl\SchedulerComponentImpl.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Workflow\Scheduler\Impl\SchedulerMain.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+            </Include>
+        </Files>
+    </CSHARP>
+</VisualStudioProject>
+

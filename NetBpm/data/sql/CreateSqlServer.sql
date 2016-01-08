@@ -1,0 +1,482 @@
+/* drop all constraint */
+if exists (select * from sysobjects where id = object_id(N'[dbo].[FKDC4D3E4BC4AB08AA]') and OBJECTPROPERTY(id, N'IsConstraint') = 1)
+	alter table NBPM_ACTOR drop constraint FKDC4D3E4BC4AB08AA
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[FKDC9635503553D7E7]') and OBJECTPROPERTY(id, N'IsConstraint') = 1)
+	alter table NBPM_FIELD drop constraint FKDC9635503553D7E7
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[FK1BE14120B63DD9C0]') and OBJECTPROPERTY(id, N'IsConstraint') = 1)
+	alter table NBPM_MEMBERSHIP drop constraint FK1BE14120B63DD9C0
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[FK1BE141206A68DF4]') and OBJECTPROPERTY(id, N'IsConstraint') = 1)
+	alter table NBPM_MEMBERSHIP drop constraint FK1BE141206A68DF4
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[FKB1DE48450E681]') and OBJECTPROPERTY(id, N'IsConstraint') = 1)
+	alter table NBPM_PROCESSBLOCK drop constraint FKB1DE48450E681
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[FKB1DE483AE6A603]') and OBJECTPROPERTY(id, N'IsConstraint') = 1)
+	alter table NBPM_PROCESSBLOCK drop constraint FKB1DE483AE6A603
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[FKB1DE48B7C43122]') and OBJECTPROPERTY(id, N'IsConstraint') = 1)
+	alter table NBPM_PROCESSBLOCK drop constraint FKB1DE48B7C43122
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[FK46521BF2A061B05A]') and OBJECTPROPERTY(id, N'IsConstraint') = 1)
+	alter table NBPM_ATTRIBUTE drop constraint FK46521BF2A061B05A
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[FK46521BF2B7C43122]') and OBJECTPROPERTY(id, N'IsConstraint') = 1)
+	alter table NBPM_ATTRIBUTE drop constraint FK46521BF2B7C43122
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[FK46521BF26833E54]') and OBJECTPROPERTY(id, N'IsConstraint') = 1)
+	alter table NBPM_ATTRIBUTE drop constraint FK46521BF26833E54
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[FKAD5A74807E4E3BFE]') and OBJECTPROPERTY(id, N'IsConstraint') = 1)
+	alter table NBPM_ACTION drop constraint FKAD5A74807E4E3BFE
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[FK375F5193B7C43122]') and OBJECTPROPERTY(id, N'IsConstraint') = 1)
+	alter table NBPM_JOB drop constraint FK375F5193B7C43122
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[FK375F51937E4E3BFE]') and OBJECTPROPERTY(id, N'IsConstraint') = 1)
+	alter table NBPM_JOB drop constraint FK375F51937E4E3BFE
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[FK44FE944AB7C43122]') and OBJECTPROPERTY(id, N'IsConstraint') = 1)
+	alter table NBPM_ASSEMBLYFILE drop constraint FK44FE944AB7C43122
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[FKB48905F8C4AB08AA]') and OBJECTPROPERTY(id, N'IsConstraint') = 1)
+	alter table NBPM_FLOW drop constraint FKB48905F8C4AB08AA
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[FKB48905F8842C3824]') and OBJECTPROPERTY(id, N'IsConstraint') = 1)
+	alter table NBPM_FLOW drop constraint FKB48905F8842C3824
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[FKB48CB2CCAA96D113]') and OBJECTPROPERTY(id, N'IsConstraint') = 1)
+	alter table NBPM_NODE drop constraint FKB48CB2CCAA96D113
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[FKB48CB2CCDB870B8A]') and OBJECTPROPERTY(id, N'IsConstraint') = 1)
+	alter table NBPM_NODE drop constraint FKB48CB2CCDB870B8A
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[FKB48CB2CC953D700F]') and OBJECTPROPERTY(id, N'IsConstraint') = 1)
+	alter table NBPM_NODE drop constraint FKB48CB2CC953D700F
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[FKB48CB2CCDC6D79F2]') and OBJECTPROPERTY(id, N'IsConstraint') = 1)
+	alter table NBPM_NODE drop constraint FKB48CB2CCDC6D79F2
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[FKB48CB2CCB7C43122]') and OBJECTPROPERTY(id, N'IsConstraint') = 1)
+	alter table NBPM_NODE drop constraint FKB48CB2CCB7C43122
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[FKB48CB2CC16B99624]') and OBJECTPROPERTY(id, N'IsConstraint') = 1)
+	alter table NBPM_NODE drop constraint FKB48CB2CC16B99624
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[FKB48CB2CCBDC5B3D5]') and OBJECTPROPERTY(id, N'IsConstraint') = 1)
+	alter table NBPM_NODE drop constraint FKB48CB2CCBDC5B3D5
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[FKB48CB2CC7534635E]') and OBJECTPROPERTY(id, N'IsConstraint') = 1)
+	alter table NBPM_NODE drop constraint FKB48CB2CC7534635E
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[FKD617A9EBC7AA9C]') and OBJECTPROPERTY(id, N'IsConstraint') = 1)
+	alter table NBPM_LOGDETAIL drop constraint FKD617A9EBC7AA9C
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[FKD617A9EB32C59B]') and OBJECTPROPERTY(id, N'IsConstraint') = 1)
+	alter table NBPM_LOGDETAIL drop constraint FKD617A9EB32C59B
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[FKD617A9EB52D4AD28]') and OBJECTPROPERTY(id, N'IsConstraint') = 1)
+	alter table NBPM_LOGDETAIL drop constraint FKD617A9EB52D4AD28
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[FK375F591A30012E]') and OBJECTPROPERTY(id, N'IsConstraint') = 1)
+	alter table NBPM_LOG drop constraint FK375F591A30012E
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[FKBE986672B7C43122]') and OBJECTPROPERTY(id, N'IsConstraint') = 1)
+	alter table NBPM_DELEGATION drop constraint FKBE986672B7C43122
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[FKDC96355068AC491]') and OBJECTPROPERTY(id, N'IsConstraint') = 1)
+	alter table NBPM_FIELD drop constraint FKDC96355068AC491
+GO
+if exists (select * from sysobjects where id = object_id(N'[dbo].[FKDC963550C7AA9C]') and OBJECTPROPERTY(id, N'IsConstraint') = 1)
+	alter table NBPM_FIELD drop constraint FKDC963550C7AA9C
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[FK236E60DA2D1911C2]') and OBJECTPROPERTY(id, N'IsConstraint') = 1)
+	alter table NBPM_PROCESSINSTANCE drop constraint FK236E60DA2D1911C2
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[FK236E60DAB7C43122]') and OBJECTPROPERTY(id, N'IsConstraint') = 1)
+	alter table NBPM_PROCESSINSTANCE drop constraint FK236E60DAB7C43122
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[FK236E60DAF607B530]') and OBJECTPROPERTY(id, N'IsConstraint') = 1)
+	alter table NBPM_PROCESSINSTANCE drop constraint FK236E60DAF607B530
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[FK4FF269F1C144]') and OBJECTPROPERTY(id, N'IsConstraint') = 1)
+	alter table NBPM_TRANSITION drop constraint FK4FF269F1C144
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[FK4FF269FB7C43122]') and OBJECTPROPERTY(id, N'IsConstraint') = 1)
+	alter table NBPM_TRANSITION drop constraint FK4FF269FB7C43122
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[FK4FF269F5D2DDF5]') and OBJECTPROPERTY(id, N'IsConstraint') = 1)
+	alter table NBPM_TRANSITION drop constraint FK4FF269F5D2DDF5
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[FK84748E876833E54]') and OBJECTPROPERTY(id, N'IsConstraint') = 1)
+	alter table NBPM_ATTRIBUTEINSTANCE drop constraint FK84748E876833E54
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[FK84748E87C7AA9C]') and OBJECTPROPERTY(id, N'IsConstraint') = 1)
+	alter table NBPM_ATTRIBUTEINSTANCE drop constraint FK84748E87C7AA9C
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[FKB1DE48A1927D4F]') and OBJECTPROPERTY(id, N'IsConstraint') = 1)
+	alter table NBPM_PROCESSBLOCK drop constraint FKB1DE48A1927D4F
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[FKB1DE4866309C76]') and OBJECTPROPERTY(id, N'IsConstraint') = 1)
+	alter table NBPM_PROCESSBLOCK drop constraint FKB1DE4866309C76
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[FKB1DE48300CC2]') and OBJECTPROPERTY(id, N'IsConstraint') = 1)
+	alter table NBPM_PROCESSBLOCK drop constraint FKB1DE48300CC2
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[FKB1DE48609C875]') and OBJECTPROPERTY(id, N'IsConstraint') = 1)
+	alter table NBPM_PROCESSBLOCK drop constraint FKB1DE48609C875
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[FK375F519338B735AF]') and OBJECTPROPERTY(id, N'IsConstraint') = 1)
+	alter table NBPM_JOB drop constraint FK375F519338B735AF
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[FKB48905F833AE02]') and OBJECTPROPERTY(id, N'IsConstraint') = 1)
+	alter table NBPM_FLOW drop constraint FKB48905F833AE02
+GO
+
+/* drop all table */
+if exists (select * from sysobjects where id = object_id(N'[dbo].[NBPM_ACTOR]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+ drop table [dbo].[NBPM_ACTOR]
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[NBPM_LOG]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+ drop table [dbo].[NBPM_LOG]
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[NBPM_DELEGATION]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+ drop table [dbo].[NBPM_DELEGATION]
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[NBPM_FIELD]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+ drop table [dbo].[NBPM_FIELD]
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[NBPM_PROCESSINSTANCE]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+ drop table [dbo].[NBPM_PROCESSINSTANCE]
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[NBPM_TRANSITION]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+ drop table [dbo].[NBPM_TRANSITION]
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[NBPM_ATTRIBUTEINSTANCE]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+ drop table [dbo].[NBPM_ATTRIBUTEINSTANCE]
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[NBPM_MEMBERSHIP]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+ drop table [dbo].[NBPM_MEMBERSHIP]
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[NBPM_PROCESSBLOCK]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+ drop table [dbo].[NBPM_PROCESSBLOCK]
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[NBPM_ATTRIBUTE]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+ drop table [dbo].[NBPM_ATTRIBUTE]
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[NBPM_ACTION]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+ drop table [dbo].[NBPM_ACTION]
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[NBPM_JOB]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+ drop table [dbo].[NBPM_JOB]
+GO
+
+/* old version never created in the new version*/
+if exists (select * from sysobjects where id = object_id(N'[dbo].[NBPM_CLASSFILE]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+ drop table [dbo].[NBPM_CLASSFILE]
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[NBPM_ASSEMBLYFILE]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+ drop table [dbo].[NBPM_ASSEMBLYFILE]
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[NBPM_FLOW]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+ drop table [dbo].[NBPM_FLOW]
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[NBPM_NODE]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+ drop table [dbo].[NBPM_NODE]
+GO
+
+if exists (select * from sysobjects where id = object_id(N'[dbo].[NBPM_LOGDETAIL]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+ drop table [dbo].[NBPM_LOGDETAIL]
+GO
+
+
+
+/* Create Actors Table */
+CREATE TABLE NBPM_ACTOR 
+	([ID] VARCHAR(255) NOT NULL PRIMARY KEY,
+	SUBCLASS VARCHAR(255) NOT NULL,
+	[NAME] VARCHAR(255) NULL,
+	TYPE_ VARCHAR(255) NULL,
+	PARENT VARCHAR(255) NULL,
+	FIRSTNAME VARCHAR(255) NULL,
+	LASTNAME VARCHAR(255) NULL,
+	EMAIL VARCHAR(255) NULL,
+	-- constrains
+	CONSTRAINT FKDC4D3E4BC4AB08AA FOREIGN KEY(PARENT) REFERENCES NBPM_ACTOR([ID]));
+
+/* Create Log Table */
+CREATE TABLE NBPM_LOG
+	([ID] BIGINT NOT NULL PRIMARY KEY,
+	ACTORID VARCHAR(255) NULL,
+	FLOW BIGINT,DATE_ DATETIME NULL,
+	TYPE_ SMALLINT NULL);
+
+/* Create Delegation Table */
+CREATE TABLE NBPM_DELEGATION
+	([ID] BIGINT NOT NULL PRIMARY KEY,
+	PROCESSDEFINITION BIGINT NULL,
+	CLASSNAME VARCHAR(255) NULL,
+	CONFIGURATION VARCHAR(255) NULL,
+	EXCEPTIONHANDLER SMALLINT NULL );
+
+/* Create Fields Table */
+CREATE TABLE NBPM_FIELD
+	([ID] BIGINT NOT NULL PRIMARY KEY,
+	[NAME] VARCHAR(255) NULL,
+	[DESCRIPTION] VARCHAR(255) NULL,
+	INDEX_ INTEGER NULL,
+	ATTRIBUTE BIGINT NULL,
+	STATE BIGINT NULL,
+	ACCESS_ SMALLINT NULL,
+	HTMLFORMATTERDELEGATION BIGINT NULL,
+	-- constrains	
+	CONSTRAINT FKDC9635503553D7E7 FOREIGN KEY(HTMLFORMATTERDELEGATION) REFERENCES NBPM_DELEGATION([ID]));
+
+/* Create Process instances table */
+CREATE TABLE NBPM_PROCESSINSTANCE
+	([ID] BIGINT NOT NULL PRIMARY KEY,
+	START_ DATETIME NULL,
+	END_ DATETIME NULL,
+	INITIATORACTORID VARCHAR(255) NULL,
+	PROCESSDEFINITION BIGINT NULL,
+	ROOTFLOW BIGINT NULL,
+	SUPERPROCESSFLOW BIGINT NULL );
+
+/* Create Transitions Table */
+CREATE TABLE NBPM_TRANSITION
+	([ID] BIGINT NOT NULL PRIMARY KEY,
+	FROM_ BIGINT NULL,
+	TO_ BIGINT NULL,
+	[NAME] VARCHAR(255) NULL,
+	[DESCRIPTION] VARCHAR(255) NULL,
+	PROCESSDEFINITION BIGINT NULL );
+
+/* Create attribute instances table*/
+CREATE TABLE NBPM_ATTRIBUTEINSTANCE
+	([ID] BIGINT NOT NULL PRIMARY KEY,
+	VALUETEXT VARCHAR(255) NULL,
+	ATTRIBUTE BIGINT NULL,
+	SCOPE BIGINT NULL );
+
+/*Create memberships table*/
+CREATE TABLE NBPM_MEMBERSHIP
+	([ID] BIGINT NOT NULL PRIMARY KEY,
+	ROLE VARCHAR(255) NULL,
+	TYPE_ VARCHAR(255) NULL,
+	GROUP_ VARCHAR(255) NULL,
+	USER_ VARCHAR(255) NULL,
+	-- constrains	
+CONSTRAINT FK1BE14120B63DD9C0 FOREIGN KEY(GROUP_) REFERENCES NBPM_ACTOR([ID]),
+CONSTRAINT FK1BE141206A68DF4 FOREIGN KEY(USER_) REFERENCES NBPM_ACTOR([ID]));
+
+/*Create Process blocks table*/
+CREATE TABLE NBPM_PROCESSBLOCK
+	([ID] BIGINT NOT NULL PRIMARY KEY,
+	SUBCLASS VARCHAR(255) NOT NULL,
+	PARENTBLOCK BIGINT NULL,
+	[NAME] VARCHAR(255) NULL,
+	[DESCRIPTION] VARCHAR(255) NULL,
+	PROCESSDEFINITION BIGINT NULL,
+	FORK BIGINT NULL,
+	JOIN_ BIGINT NULL,
+	RESPONSIBLEUSERNAME VARCHAR(255) NULL,
+	VERSION_ INTEGER NULL,
+	STARTSTATE BIGINT NULL,
+	ENDSTATE BIGINT NULL,
+	[IMAGE] IMAGE NULL, --LONG VARBINARY,  -- SQL Server incompatibility here
+	IMAGEMIMETYPE VARCHAR(255) NULL,
+	IMAGEHEIGHT INTEGER NULL,
+	IMAGEWIDTH INTEGER NULL,
+	AUTHORIZATIONDELEGATION BIGINT NULL,
+	-- constrains	
+CONSTRAINT FKB1DE48450E681 FOREIGN KEY(AUTHORIZATIONDELEGATION) REFERENCES NBPM_DELEGATION([ID]),
+CONSTRAINT FKB1DE483AE6A603 FOREIGN KEY(PARENTBLOCK) REFERENCES NBPM_PROCESSBLOCK([ID]),
+CONSTRAINT FKB1DE48B7C43122 FOREIGN KEY(PROCESSDEFINITION) REFERENCES NBPM_PROCESSBLOCK([ID]));
+
+/*Create attributes table*/
+CREATE TABLE NBPM_ATTRIBUTE
+	([ID] BIGINT NOT NULL PRIMARY KEY,
+	SCOPE BIGINT NULL,
+	INITIALVALUE VARCHAR(255) NULL,
+	SERIALIZERDELEGATION BIGINT NULL,
+	[NAME] VARCHAR(255) NULL,
+	[DESCRIPTION] VARCHAR(255) NULL,
+	PROCESSDEFINITION BIGINT NULL,
+	-- constrains	
+CONSTRAINT FK46521BF2A061B05A FOREIGN KEY(SERIALIZERDELEGATION) REFERENCES NBPM_DELEGATION([ID]),
+CONSTRAINT FK46521BF2B7C43122 FOREIGN KEY(PROCESSDEFINITION) REFERENCES NBPM_PROCESSBLOCK([ID]),
+CONSTRAINT FK46521BF26833E54 FOREIGN KEY(SCOPE) REFERENCES NBPM_PROCESSBLOCK([ID]));
+
+/*Create actions table*/
+CREATE TABLE NBPM_ACTION
+	([ID] BIGINT NOT NULL PRIMARY KEY,
+	DEFINITIONOBJECT BIGINT NOT NULL,
+	EVENTTYPE SMALLINT NOT NULL,
+	ACTIONDELEGATION BIGINT NULL,
+	-- constrains	
+CONSTRAINT FKAD5A74807E4E3BFE FOREIGN KEY(ACTIONDELEGATION) REFERENCES NBPM_DELEGATION([ID]));
+
+/*Create jobs Table*/
+CREATE TABLE NBPM_JOB
+	([ID] BIGINT NOT NULL PRIMARY KEY,
+	PROCESSDEFINITION BIGINT NULL,
+	CONTEXT BIGINT NULL,
+	DATE_ DATETIME NULL,
+	USERID VARCHAR(255) NULL,
+	PWD VARCHAR(255) NULL,
+	REFERENCE VARCHAR(255) NULL,
+	ACTIONDELEGATION BIGINT NULL,
+	-- constrains	
+CONSTRAINT FK375F5193B7C43122 FOREIGN KEY(PROCESSDEFINITION) REFERENCES NBPM_PROCESSBLOCK([ID]),
+CONSTRAINT FK375F51937E4E3BFE FOREIGN KEY(ACTIONDELEGATION) REFERENCES NBPM_DELEGATION([ID]));
+
+/*Create classfiles table*/
+CREATE TABLE NBPM_ASSEMBLYFILE
+	([ID] BIGINT NOT NULL PRIMARY KEY,
+	FILENAME VARCHAR(255) NULL,
+	ASSEMBLYVERSION VARCHAR(255) NULL,
+	ASSEMBLYNAME VARCHAR(255) NULL,
+	BYTES IMAGE NULL, -- LONG VARBINARY, -- SQL Server incompatibility here
+	PROCESSDEFINITION BIGINT NULL,
+	-- constrains	
+	CONSTRAINT FK44FE944AB7C43122 FOREIGN KEY(PROCESSDEFINITION) REFERENCES NBPM_PROCESSBLOCK([ID]));
+
+/*Create flow table*/
+CREATE TABLE NBPM_FLOW
+	([ID] BIGINT NOT NULL PRIMARY KEY,
+	[NAME] VARCHAR(255) NULL,
+	ACTORID VARCHAR(255) NULL,
+	START_ DATETIME NULL,
+	END_ DATETIME NULL,
+	PARENTREACTIVATION BIT NULL,
+	NODE BIGINT NULL,
+	PROCESSINSTANCE BIGINT NULL,
+	PARENT BIGINT NULL,
+	-- constrains	
+CONSTRAINT FKB48905F8C4AB08AA FOREIGN KEY(PARENT) REFERENCES NBPM_FLOW([ID]),
+CONSTRAINT FKB48905F8842C3824 FOREIGN KEY(PROCESSINSTANCE) REFERENCES NBPM_PROCESSINSTANCE([ID]));
+
+/*Create node table*/
+CREATE TABLE NBPM_NODE
+	([ID] BIGINT NOT NULL PRIMARY KEY,
+	SUBCLASS VARCHAR(255) NOT NULL,
+	PROCESSBLOCK BIGINT NULL,
+	[NAME] VARCHAR(255) NULL,
+	[DESCRIPTION] VARCHAR(255) NULL,
+	PROCESSDEFINITION BIGINT NULL,
+	COORDINATEX1 INTEGER NULL,
+	COORDINATEY1 INTEGER NULL,
+	COORDINATEX2 INTEGER NULL,
+	COORDINATEY2 INTEGER NULL,
+	ASSIGNMENTDELEGATION BIGINT NULL,
+	ACTORROLENAME VARCHAR(255) NULL,
+	SUBPROCESS BIGINT NULL,
+	PROCESSINVOKERDELEGATION BIGINT NULL,
+	ACTOREXPRESSION VARCHAR(255) NULL,
+	DECISIONDELEGATION BIGINT NULL,
+	FORKDELEGATION BIGINT NULL,
+	JOINDELEGATION BIGINT NULL,
+	-- constrains	
+CONSTRAINT FKB48CB2CCAA96D113 FOREIGN KEY(PROCESSINVOKERDELEGATION) REFERENCES NBPM_DELEGATION([ID]),
+CONSTRAINT FKB48CB2CCDB870B8A FOREIGN KEY(FORKDELEGATION) REFERENCES NBPM_DELEGATION([ID]),
+CONSTRAINT FKB48CB2CC953D700F FOREIGN KEY(SUBPROCESS) REFERENCES NBPM_PROCESSBLOCK([ID]),
+CONSTRAINT FKB48CB2CCDC6D79F2 FOREIGN KEY(JOINDELEGATION) REFERENCES NBPM_DELEGATION([ID]),
+CONSTRAINT FKB48CB2CCB7C43122 FOREIGN KEY(PROCESSDEFINITION) REFERENCES NBPM_PROCESSBLOCK([ID]),
+CONSTRAINT FKB48CB2CC16B99624 FOREIGN KEY(DECISIONDELEGATION) REFERENCES NBPM_DELEGATION([ID]),
+CONSTRAINT FKB48CB2CCBDC5B3D5 FOREIGN KEY(ASSIGNMENTDELEGATION) REFERENCES NBPM_DELEGATION([ID]),
+CONSTRAINT FKB48CB2CC7534635E FOREIGN KEY(PROCESSBLOCK) REFERENCES NBPM_PROCESSBLOCK([ID]));
+
+/*Create log details table*/
+CREATE TABLE NBPM_LOGDETAIL
+	([ID] BIGINT NOT NULL PRIMARY KEY,
+	SUBCLASS VARCHAR(255) NOT NULL,
+	LOG_ BIGINT NULL,
+	ATTRIBUTE BIGINT NULL,
+	TEXT_ VARCHAR(255) NULL,
+	DELEGATION BIGINT NULL,
+	CLASSNAME VARCHAR(255) NULL,
+	EXCEPTIONMESSAGE VARCHAR(255) NULL,
+	LONG_ BIGINT NULL,
+	-- constrains	
+CONSTRAINT FKD617A9EBC7AA9C FOREIGN KEY(ATTRIBUTE) REFERENCES NBPM_ATTRIBUTE([ID]),
+CONSTRAINT FKD617A9EB32C59B FOREIGN KEY(LOG_) REFERENCES NBPM_LOG([ID]),
+CONSTRAINT FKD617A9EB52D4AD28 FOREIGN KEY(DELEGATION) REFERENCES NBPM_DELEGATION([ID]));
+
+/* Supplementary constrains*/
+ALTER TABLE NBPM_LOG ADD CONSTRAINT FK375F591A30012E FOREIGN KEY(FLOW) REFERENCES NBPM_FLOW([ID]);
+ALTER TABLE NBPM_DELEGATION ADD CONSTRAINT FKBE986672B7C43122 FOREIGN KEY(PROCESSDEFINITION) REFERENCES NBPM_PROCESSBLOCK([ID]);
+ALTER TABLE NBPM_FIELD ADD CONSTRAINT FKDC96355068AC491 FOREIGN KEY(STATE) REFERENCES NBPM_NODE([ID]);
+ALTER TABLE NBPM_FIELD ADD CONSTRAINT FKDC963550C7AA9C FOREIGN KEY(ATTRIBUTE) REFERENCES NBPM_ATTRIBUTE([ID]);
+ALTER TABLE NBPM_PROCESSINSTANCE ADD CONSTRAINT FK236E60DA2D1911C2 FOREIGN KEY(SUPERPROCESSFLOW) REFERENCES NBPM_FLOW([ID]);
+ALTER TABLE NBPM_PROCESSINSTANCE ADD CONSTRAINT FK236E60DAB7C43122 FOREIGN KEY(PROCESSDEFINITION) REFERENCES NBPM_PROCESSBLOCK([ID]);
+ALTER TABLE NBPM_PROCESSINSTANCE ADD CONSTRAINT FK236E60DAF607B530 FOREIGN KEY(ROOTFLOW) REFERENCES NBPM_FLOW([ID]);
+ALTER TABLE NBPM_TRANSITION ADD CONSTRAINT FK4FF269F1C144 FOREIGN KEY(TO_) REFERENCES NBPM_NODE([ID]);
+ALTER TABLE NBPM_TRANSITION ADD CONSTRAINT FK4FF269FB7C43122 FOREIGN KEY(PROCESSDEFINITION) REFERENCES NBPM_PROCESSBLOCK([ID]);
+ALTER TABLE NBPM_TRANSITION ADD CONSTRAINT FK4FF269F5D2DDF5 FOREIGN KEY(FROM_) REFERENCES NBPM_NODE([ID]);
+ALTER TABLE NBPM_ATTRIBUTEINSTANCE ADD CONSTRAINT FK84748E876833E54 FOREIGN KEY(SCOPE) REFERENCES NBPM_FLOW([ID]);
+ALTER TABLE NBPM_ATTRIBUTEINSTANCE ADD CONSTRAINT FK84748E87C7AA9C FOREIGN KEY(ATTRIBUTE) REFERENCES NBPM_ATTRIBUTE([ID]);
+ALTER TABLE NBPM_PROCESSBLOCK ADD CONSTRAINT FKB1DE48A1927D4F FOREIGN KEY(STARTSTATE) REFERENCES NBPM_NODE([ID]);
+ALTER TABLE NBPM_PROCESSBLOCK ADD CONSTRAINT FKB1DE4866309C76 FOREIGN KEY(ENDSTATE) REFERENCES NBPM_NODE([ID]);
+ALTER TABLE NBPM_PROCESSBLOCK ADD CONSTRAINT FKB1DE48300CC2 FOREIGN KEY(FORK) REFERENCES NBPM_NODE([ID]);
+ALTER TABLE NBPM_PROCESSBLOCK ADD CONSTRAINT FKB1DE48609C875 FOREIGN KEY(JOIN_) REFERENCES NBPM_NODE([ID]);
+ALTER TABLE NBPM_JOB ADD CONSTRAINT FK375F519338B735AF FOREIGN KEY(CONTEXT) REFERENCES NBPM_FLOW([ID]);
+ALTER TABLE NBPM_FLOW ADD CONSTRAINT FKB48905F833AE02 FOREIGN KEY(NODE) REFERENCES NBPM_NODE([ID]);

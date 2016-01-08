@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE document PUBLIC "-//APACHE//DTD Documentation V2.0//EN" "http://forrest.apache.org/dtd/document-v20.dtd">
+<document>
+  <header>
+    <title>The NetBpm Architecture</title>
+  </header>
+  <body>
+    <section>
+      <title>The component interfaces</title>
+      <p>NetBpm is developed as a set of components.  Each component is exposed with a central interface 
+			(session facade).  The functionality of the different components is inspired by the WfMC.</p>
+			<figure src="../images/interfaces.gif" alt="The NetBpm interfaces"/>
+			<p><em>The NetBpm interfaces</em></p>
+			<ol>
+			  <li>
+			    The interface for the <strong>'process developer'</strong> : 
+			    This interface is used to put process definitions into the NetBpm engine.
+			    First, process developers create a process definition as explained in
+			    <a href="npdl.html">nPdl</a>.  The result is a process 
+			    archive.  A process archive is a complete specification of a business 
+			    process.  The interface described here allows to put a process archive
+			    into the NetBpm engine through e.g. the NetBpm web interface for developers.
+			    The process archive is parsed and stored in the NetBpm database.<br/><br/>
+			  </li>
+			  <li>
+			    The interface for a <strong>'user'</strong> : 
+			    The term 'user' denotes people that execute processes.
+			    The 2 main actions of the process execution are start a process and perform
+			    an activity.  Starting a process creates a new process instance.  A process
+			    instance is one execution of a process definition.  A process instance
+			    is composed of one or more flows-of-execution that execute in parallel.
+			    For each flow that is in an activity-state, exactly one person or unit is 
+			    responsible for the performing the activity.  Performing the activity is
+			    the second action that can be done with the execution interface.
+			    The execution interface also allows additional actions such as getting a 
+			    tasklist, getting the list of available process definitions, ...<br/><br/>
+			  </li>
+			  <li>
+			    The interface between <strong>'external IT systems'</strong> and the NetBpm engine :
+			    External IT-systems can interact with NetBpm in 2 ways : 
+			    <ul>
+			      <li>
+			        System initiated interaction : When a system wants to initiate an action
+			        upon a process, it has to use the execution interface as described above.
+			      </li>
+			      <li>
+			        Process initiated interaction : For interactions that need to be 
+			        initiated by the process, &amp;Interactors&amp; are used.  Interactors 
+			        are part of the process definition and included in the process archive.
+			        Interactors are .NET-classes that can access the FlowContext.  That enables
+			        Interactors to establish a two-way communication between the process-specific
+			        information (FlowContext) and the external IT-systems.
+			      </li>
+			    </ul><br/>
+			  </li>
+			  <li>
+			    The interface between NetBpm and the <strong>'organisational datastore'</strong> : 
+			    For several calculations, NetBpm needs information about the organisation : people,
+			    teams, departments, roles, ...  To allow NetBpm to be quickly implemented in an 
+			    organisation, all this information is collected though one central organisation 
+			    component.  For different organisations, this kind of information is stored in 
+			    different types of datastores like e.g. an LDAP-system, a relational user database,
+			    an exchange server, ...  The use of a so called session facade pattern, makes it 
+			    easy to connect all data sources of organisational information to NetBpm.        
+			  </li>
+			</ol>
+			<figure src="../images/components.gif" alt="The NetBpm component structure"/>
+			<p><em>The NetBpm component structure</em></p>
+	    <section>
+	      <title>The definition component</title>
+    	</section>
+	    <section>
+	      <title>The execution component</title>
+	      <p>The 2 most typical execution actions are starting a process instance and performing an activity.</p>
+		    <section>
+		      <title>Starting a process instance</title>
+		      <p>These are the methods for starting a process instance, declared in <code>NetBpm.Workflow.Execution.ExecutionComponent</code></p>
+					<table>
+					  <tr>
+					  	<td>
+								<source>
+	public interface ExecutionComponent {
+	  ...
+		IProcessInstance startProcessInstance(Int64 processDefinitionId);
+
+		IProcessInstance startProcessInstance(Int64 processDefinitionId,
+                                          IDictionary attributeValues);
+
+		IProcessInstance startProcessInstance(Int64 processDefinitionId, 
+                                          IDictionary attributeValues, 
+                                          String transitionName);
+
+		IProcessInstance startProcessInstance(Int64 processDefinitionId, 
+                                          IDictionary attributeValues, 
+                                          String transitionName, 
+                                          Relations relations);
+	  ...
+								</source>  
+							</td>
+						</tr>
+					</table>
+					<p><em>Methods for starting a process instance</em></p>
+					<p>Note that the implementation of the 4 methods is the same and that the first
+					three methods only provide default values for the parameters.
+					</p>
+					
+					<p><strong>processDefinitionId</strong> identifies the process definition for which
+					an instance should be created.
+					</p>
+					
+					<p><strong>attributeValues</strong> is a Map of attribute-names to attribute-values.  The
+					values provided in this Map will be stored in the attribute instance variables.
+					Before the attributesValues are stored in the attribute instances, every attribute
+					instance is initialized to the initial value (if one is specified).
+					</p>
+					
+					<p><strong>transitionName</strong> is the name of the transition to take.  In case there is only
+					one leaving transition on the start-activity, it is selected automatically and does not
+					have to be specified.
+					</p>
+					
+					<p><strong>relations</strong> specifies which related objects of the returned process-instance should
+					be resolved.  This prohibits that for each request, all objects that can be reached from the
+					process instance are fetched from the database, optionally serialized and send to the client.
+					e.g. If you want to access the attribute values, proceed as follows :
+					</p>
+					<fixme author="pbolle">add examplecode</fixme>
+<!--					<table>
+					  <tr>
+					  	<td>
+								<source>
+	  ...
+	  String[] relationsProperties = 
+	  Relations relations = new Relations( 
+	                          new String[]{ "rootFlow.attributeInstances.value", 
+	                                        "processDefinition.startState" } );
+	  ProcessInstance processInstance = 
+	      executionComponent.startProcessInstance( processDefinitionId,
+	                                               attributeValues,
+	                                               transitionName,
+	                                               relations );
+	
+	  // the processInstance now contains
+	  // the requested relations 
+	          
+	  StartState startState = processInstance.getProcessDefinition().getStartState();
+	  Iterator iter = processInstance.getRootFlow().getAttributeInstances();
+	  while ( iter.hasNext() ) {
+	    AttributeInstance attributeInstance = (AttributeInstance) iter.next();
+	    System.out.println( "value: " + attributeInstance.getValue() );
+	  }
+	  ...
+								</source>  
+							</td>
+						</tr>
+					</table>-->
+					<p><em>Example of using Relations</em></p>
+	    	</section>
+		    <section>
+		      <title>Starting a process instance</title>
+					<table>
+					  <tr>
+					  	<td>
+								<source>
+	public interface ExecutionComponent {
+  ...
+		IList performActivity(Int64 flowId);
+
+		IList performActivity(Int64 flowId, 
+		                      IDictionary attributeValues);
+
+		IList performActivity(Int64 flowId, 
+		                      IDictionary attributeValues, 
+		                      String transitionName);
+
+		IList performActivity(Int64 flowId, 
+		                      IDictionary attributeValues, 
+		                      String transitionName, 
+		                      Relations relations);
+  ...
+								</source>  
+							</td>
+						</tr>
+					</table>
+					<p><em>Methods for starting a process instance</em></p>
+					<p>Note that the implementation of the 4 methods is the same and that the first
+					three methods only provide default values for the parameters.
+					</p>
+					
+					<p><strong>flowId</strong> identifies on which flow the authenticated user wants to perform
+					an activity.
+					</p>
+					
+					<p><strong>attributeValues</strong>, <strong>transitionName</strong> &amp; <strong>relations</strong> @see 
+					<a href="#startingaprocessinstance">starting a process instance</a>
+					</p>
+	    	</section>
+    	</section>
+	    <section>
+	      <title>The organisation component</title>
+				<p>The organisation component centralizes all access to organisational information.
+				This includes users, groups and memberships.  The organisation component is used
+				by the execution component in a read-only manner.  This is the datamodel used
+				by the default implementation of the organisation component.  To couple NetBpm to 
+				your own users-database or LDAP system, it is sufficient to switch the organisation
+				component implementation with your own cusomized version.
+				</p>
+				<figure src="../images/organisationmodel.gif" alt="The organisational datamodel used in NetBpm"/>
+				<p><em>The organisational datamodel used in NetBpm</em></p>
+				
+				<p>The NetBpm execution component needs user and group 
+				information to assign activities.  The execution component retrieves all organisational 
+				data through the organisation component.  This allows easy configurability to a custom 
+				enterprise environment.  An company can couple NetBpm to its own infrastructure by 
+				providing a custom organisation-component-implementation.
+				</p>
+    	</section>
+	    <section>
+	      <title>The log component</title>
+    	</section>
+	    <section>
+	      <title>The scheduler component</title>
+    	</section>
+	    <section>
+	      <title>The admin component</title>
+    	</section>
+    </section>
+    <section>
+      <title>State</title>
+			<p>A flow represents a 'thread of execution' of activity-states.  A process instance
+			represents the complete state of one execution of a process definition.  As you can see
+			in the image, the state of a process instance is represented as a hierarchical tree
+			of flows.
+			</p>
+			<figure src="../images/state.gif" alt="The state of a process instance"/>
+			<p><em>The state of a process instance</em></p>
+  	</section>
+    <section>
+      <title>Attributes</title>
+	    <section>
+	      <title>Serialization</title>
+				<p>Attributes specify process instance variables.  An attribute-instance is an instance of an attribute
+				for one process execution.  The attributes of a process instance can be seen as a Map that contains
+				process execution related information and that is maintained for the complete execution of the process
+				instance.
+				</p>  
+				<figure src="../images/attributes.gif" alt="The serialization process of attributes"/>
+				<p><em>The serialization process of attributes</em></p>
+  		</section>
+	    <section>
+	      <title>Scope</title>
+				<p>Note that the vision on attributes as explained above is little bit simplified : to be precise, 
+				attribute-instances are associated to flows.  For each attributes defined in the process definition, an attribute instance is
+				attached to the root-flow.  For each attribute defined in a concurrent block, an attribute instance is
+				created for each flow that is forked.  Attribute-instances are accessed relative to a flow.  A flow
+				is able to 'see' all its attribute-instances plus all attribute-instances of all its parents.
+				</p>
+  		</section>
+  	</section>
+    <section>
+      <title>The delegation principle</title>
+			<p>NetBpm is designed as a generic process execution engine.  This means that only the basic structure of
+			executing business processes is done by the core NetBpm execution engine.  All variable logic is delegated to a
+			specific set of interfaces.  These are called the delegation-interfaces.  The process definition contains 
+			the associations of which delegation implementation to use for every occasion.
+			</p>
+			<p>The association of delegation-implementations to the process is done in the process definition.  
+			To allows for the biggest flexibility, the process developer has to options for every association 
+			of a delegation implementation in the process definition : 
+			</p>
+			<ol>
+			  <li>Use one of the default-implementations, already available in the NetBpm-engine.</li>
+			  <li>Use a custom implementation which can be included in the process definition as a .NET-assembly.</li>
+			</ol>
+	    <section>
+		    <title>The delegation interfaces</title>
+				<p>The next part will give a short description of each of the delegation interfaces.</p>
+		    <section>
+		      <title>Action</title>
+		      <p>An action allows two way communication between the information stored in a process instance and
+				  all IT-systems within an organisation.  The process-event on which an Action is executed is specified 
+				  in the process definition.  Actions can be seen a kind of listener-interface for process execution events.
+				  </p>
+				</section>
+		    <section>
+		      <title>DecisionHandler</title>
+		      <p>When execution arrives in an activity-state, an AssignmentHandler has to determine which person or 
+  				group will be responsible for performing the activity-state.</p>
+				</section>
+		    <section>
+		      <title>JoinHandler</title>
+		      <p>Upon arrival of a flow in a join, a JoinHandler decides whether or not the parent flow has to be reactivated</p>
+				</section>
+		    <section>
+		      <title>ForkHandler</title>
+		      <p>Upon execution of a fork, a ForkHandler decides which of the leaving transitions will be activated.
+				  A ForkHandler also controls the multiplicity of each transition, meaning that multiple flows can 
+				  be forked for the same transition.
+				  </p>
+				</section>
+		    <section>
+		      <title>Serializer</title>
+		      <p>This delegation interface is used to convert attribute-values, which are plain .NET-objects to and 
+  				from text-format.  The text-format is used to store attribute-values in the database.</p>
+				</section>
+		    <section>
+		      <title>HtmlFormatter</title>
+		      <p>The HtmlFormatter is used to present the HTML-inputcontrol for an attribute and for the parsing of the
+  				value, returned by the browser for this HTML-inputcontrol.</p>
+				</section>
+		    <section>
+		      <title>ProcessInvocationHandler</title>
+		      <p>A ProcessInvocationHandler handles the spawning and collection of data from a subprocess in an process-state.</p>
+				</section>
+			</section>
+		</section>
+    <section>
+      <title>ProcessInvocationHandler</title>
+      <p>NetBpm stores all it information in a database.  All information of the process definitions
+			(as parsed from the process archives) is stored in the NetBpm-definition tables.  The run-time
+			information, which contains the state and information of the execution of process instances
+			is stored in the execution tables.  The logging information is stored in the logging tables
+			The security is stored in the organisation tables.
+			</p>
+			<p>
+			To generate the database creation DDL for your database, see 
+			<!--<a href="developer.html#generatingthedatabase">-->Generating the database<!--</a>--> in the developers 
+			manual.
+			</p>
+			<fixme author="pbolle">describe the generation of the database</fixme>
+		</section>
+    <section>
+      <title>NetBpm as integration platform</title>
+	    <section>
+	      <title>Process initiated interactio</title>
+				<p>An <code>Interaction</code> is a delegation interface.  An <code>Interaction</code>
+				can be associated with any event during process execution.  In the <code>Interaction</code>
+				the developer has access to all the resources that are available within the container like
+				databases through ADO, ...  On the
+				other hand, the <code>Interaction</code>-developer has read and write access to the 
+				process related data (= attributes).
+				</p>
+				<figure src="../images/integration.gif" alt="integration"/>
+			</section>
+	    <section>
+	      <title>Integration initiated by an external application</title>
+				<p>If an application wants to interact with the execution of processes, it just 
+				has to connect to the <a href="#thecomponentinterfaces">execution component's 
+				interface</a>.  The container allows for very easy development of all sorts
+				of connectors which make the interface of the execution component available
+				through various kinds of protocols like : web-service, tcp-socket, http-request, ...
+				In time, all these connectors will be available in the standards NetBpm package.
+				If you develop such a connector, please share it with the community.
+				</p>
+			</section>
+		</section>
+    <section>
+      <title>Exception handling</title>
+			<p>NetBpm is used as an integration platform.  So, when a process is being executed there
+			can be a lot of dependencies to the company's other IT infrastructure.  If one of these
+			dependancies causes a failure of the execution of a process, there are three options : 
+			</p>
+			<ol>
+			  <li>the failure is ignored</li>
+			  <li>the failure is logged (default)</li>
+			  <li>the failure causes a rollback</li>
+			</ol>
+			
+			<p>In case of a rollback, the state of the process instance will be rolled
+			back to the state before the activity was performed.  The call to the
+			NetBpm execution interface can be made part of a larger transation, so that 
+			the complete transition is roll-backed in case of a process exception.
+			</p>
+		</section>
+  </body>
+</document>

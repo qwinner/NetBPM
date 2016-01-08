@@ -1,0 +1,16 @@
+bin
+dist
+bak
+build
+classes
+*.log
+*.jpr
+*.jpr.local
+*.tpr
+*.tws
+*.html
+*.htm
+deploy
+*.tar
+GPD*.tar.gz
+GPD*.zip

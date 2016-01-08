@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<castle>
+	<components>
+		<component id="BankA" 
+			service="NetBpm.Test.Bank.EComp.IBankA, NetBpm.Test" 
+			type="NetBpm.Test.Bank.EComp.Impl.BankAEComp, NetBpm.Test" />
+
+		<component id="BankB" 
+			service="NetBpm.Test.Bank.EComp.IBankB, NetBpm.Test" 
+			type="NetBpm.Test.Bank.EComp.Impl.BankBEComp, NetBpm.Test" />
+	</components>
+	<facilities>
+		
+		<facility 
+			id="nhibernatefacility" 
+			type="Castle.Facilities.NHibernateIntegration.NHibernateFacility, Castle.Facilities.NHibernateIntegration">
+
+			<factory id="nhibernate.factory">
+				<settings>
+					<item key="hibernate.connection.provider">NHibernate.Connection.DriverConnectionProvider</item>
+					<item key="hibernate.connection.driver_class">NHibernate.Driver.SqlClientDriver</item>
+					<item key="hibernate.connection.connection_string">Data Source=.;Initial Catalog=test;Integrated Security=SSPI</item>
+					<item key="hibernate.dialect">NHibernate.Dialect.MsSql2000Dialect</item>
+				</settings>
+	 			<assemblies>
+	 	 				<assembly>NetBpm.Test</assembly>
+	 			</assemblies>
+			</factory>
+		</facility>
+		<facility 
+			id="transactions" 
+			type="Castle.Facilities.AutomaticTransactionManagement.TransactionFacility, Castle.Facilities.AutomaticTransactionManagement"/>
+		
+	</facilities>
+</castle>

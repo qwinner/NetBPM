@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE document PUBLIC "-//APACHE//DTD Documentation V2.0//EN" "http://forrest.apache.org/dtd/document-v20.dtd">
+<document>
+  <header>
+    <title>NetBpm Screenshots</title>
+  </header>
+  <body>
+    <section>
+      <title>NetBpm Screenshots</title>
+      	<p>Here you' ll find some screenshots of the NetBpm webinterface.</p>
+      	<p><strong>Click on the images to get a larger version of them.</strong></p>
+				<p>
+					<a href="../images/index.gif"><img src="../images/index_s.gif" alt="NetBpm webgui loginscreen"/></a>
+				</p>
+				<p>
+					<em>NetBpm webgui loginscreen</em>
+				</p>
+				<p>
+					<a href="../images/showHome.gif"><img src="../images/showHome_s.gif" alt="The list of the processes and tasks of a special user"/></a>
+				</p>
+				<p>
+					<em>The list of the processes and tasks of a special user</em>
+				</p>
+				<p>
+					<a href="../images/startProcessInstance.gif"><img src="../images/startProcessInstance_s.gif" alt="The start screen of a new process"/></a>
+				</p>
+				<p>
+					<em>The start screen of a new process</em>
+				</p>
+				<p>
+					<a href="../images/showProcessInstance.gif"><img src="../images/showProcessInstance_s.gif" alt="A history of a process with all process steps and the history of changes of the attribute "/></a>
+				</p>
+				<p>
+					<em>A history of a process with all process steps and the history of changes of the attribute </em>
+				</p>
+    </section>
+  </body>
+</document>

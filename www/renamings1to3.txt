@@ -1,0 +1,13 @@
+renamings in jbpm3
+--------- 
+* ActivityState --> State 
+* Attribute --> Variable (because I always started the explanation with : "attributes are process variables...") 
+* ProcessDefinition --> Definition (because it is shorter) 
+* DefinitionObject --> Element  
+* Flow --> Token (as named in petri nets) 
+* performActivity --> endOfState 
+* Relations --> Assembler (as named by Fowler in Patterns of enterprise application architecture) 
+* decoupled definition event types (for specifying when actions must be triggered) from  
+  log event types (when an event occurred) 
+  Log events correspond now with service method invocations. 
+  Log events and authorization mgr reuse the ServiceMethod persistable enum. 

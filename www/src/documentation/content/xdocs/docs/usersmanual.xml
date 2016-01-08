@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE document PUBLIC "-//APACHE//DTD Documentation V2.0//EN" "http://forrest.apache.org/dtd/document-v20.dtd">
+<document>
+  <header>
+    <title>The NetBpm Users Manual</title>
+  </header>
+  <body>
+    <section>
+      <title>What is NetBpm</title>
+			<p>NetBpm is a .Net enterprise application that implements a uniquely flexible and 
+			extensible workflow management system (WFMS). The core functionality of NetBpm comprises 
+			an engine that maintains the state of the fully customisable processes. NetBpm as a 
+			system can be viewed as the combination of several components, each of these components 
+			has an well-defined interface.
+			</p>
+			
+			<p>In its essence, NetBpm solves the following problem : How to combine normal programming
+			logic with results that are produced by other systems or people which cannot be obtained 
+			in real-time ?  Execution of a business process continiously switches between execution
+			and waiting on input from a 3rd party.  The NetBpm engine keeps track of each party it is 
+			waiting for and what activities those parties should be doing. When such an external 
+			party supplies the results to the NetBpm engine, it continues to execute the process
+			definition.  
+			</p>
+			
+			<p>The first component allows users to load descriptions of business processes
+			into the application using the <a href="npdl.html">NetBpm
+			Process Definition Language (nPdl)</a>.  nPdl is an simple, yet powerful XML,
+			human-readable defintion language.  In nPdl one business process is contained within one 
+			<a href="npdl.html#processarchives">process archive</a>
+			(a ziped file with all process information). Process archives are
+			created and then deployed (read loaded) into the NetBpm application. Once a process
+			archive is deployed, NetBpm provides a second interface to clients to perform an
+			activity (read step) of the process. When an activity is performed NetBpm will
+			calculate the next state of the process and assign new actors to activities
+			that have to be performed. Important events occurs behind the scenes during these
+			calculations.  NetBpm provides hooks to execute actions in reponse
+			to these events. Also, these actions can access the process attributes as well as
+			access all systems in the organisation because they are executed within a
+			container. These actions provide the link between Business Process Management
+			(BPM) and Enterprise Application Integration (EAI).
+			</p>
+			<figure src="../images/interfaces.gif" alt="The NetBpm interfaces"/>
+    </section>
+    <section id="versioning">
+      <title>Versions of processes definitions</title>
+      <p>The information contained in a <a href="npdl.html#processarchives">process archive</a> is called a process 
+			definition </p>
+	    <section>
+	      <title>Process name and versions</title>
+	      <p>Processes are distinct by name, meaning that the name of a process determines 
+				whether two process definitions are equal. In a process archive it is not possible to 
+				specify a version. When a process definition is deployed, NetBpm will check for older versions 
+				of the same process definition. NetBpm will assign as a version number one more then 
+				the highest version number it finds for that process definition. </p>
+    	</section>
+	    <section>
+	      <title>Process execution and versions</title>
+	      <p>When collecting the list of process definitions from the execution component,
+				only one version of every process definition will be returned (the one with
+				the highest version number, of course). This enables to start process definitions
+				always in the latest version.</p>
+				<p>If a new version of a process definition is uploaded into NetBpm, all the 
+				process instances that are running in the older versions, keep on executing
+				in their old process definitions.</p>
+    	</section>
+	    <section>
+	      <title>Delegation classes and versioning</title>
+				<p>Another aspect of versioning is the versioning of the delegation classes. The 
+				approach is straightforward : classes are not shared between subsequent versions of 
+				process definitions. This means that a process execution is only able to see the classes 
+				of its own process definition.</p>
+    	</section>
+    </section>
+  </body>
+</document>

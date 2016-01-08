@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright 2002-2005 The Apache Software Foundation or its licensors,
+  as applicable.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE document PUBLIC "-//APACHE//DTD Documentation V2.0//EN" "http://forrest.apache.org/dtd/document-v20.dtd">
+<document> 
+  <header> 
+    <title>Hall of Fame</title> 
+  </header> 
+  <body> 
+    <section>
+      <title>Contributors</title>
+      <p>Here are all persons listed that helped to build NetBpm. In strictly alphabetical order:</p>
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Work</th>
+        </tr>
+        <tr>
+        	<td>Tom Baeyens</td>
+        	<td>He is the founder of the JBpm project and the inventor of the concepts that NetBpm bases on. 
+        			Most of the NetBpm documentation uses the documentation of JBpm 1.</td>
+        </tr>
+        <tr>
+        	<td>Jan-Philipp Bolle</td>
+        	<td>He started the project and is the project leader.</td>
+        </tr>
+        <tr>
+        	<td>Holger Hess</td>
+        	<td>monosupport</td>
+        </tr>
+      </table>
+      <p>Thanks are due to YourKit for providing licenses to NetBpm developers
+ 				 for use of YourKit on NetBpm per YourKit's friendly policy supporting
+				 open source projects</p>
+			<p>
+				<a href="http://www.yourkit.com"><img src="./images/yjp.gif" alt="The Industry Leader in .NET Profiling"/></a>
+			</p>
+      <p>Many thanks to IDS Scheer for getting a free license of the Process Performance Manager.</p>
+			<p>
+				<a href="http://www.ids-scheer.com"><img src="./images/ppm.gif" alt="Process Performance Manager"/></a>
+			</p>
+
+    </section>
+  </body>
+</document>

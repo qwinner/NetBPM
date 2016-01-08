@@ -1,0 +1,23 @@
+<database>
+<config>
+	<formatter>
+		<package>org.jbpm.workflow.delegation.impl.htmlformatter</package>
+	</formatter>
+	<action>
+		<package>de.dbsystems.einkauf.eflow.server.action</package>
+		<package>org.jbpm.workflow.delegation.impl.action</package>
+	</action>
+	<decision>
+		<package>de.dbsystems.einkauf.eflow.server.decision</package>
+		<package>org.jbpm.workflow.delegation.impl.decision</package>
+	</decision>
+	<assignment>
+		<package>org.jbpm.workflow.delegation.impl.assignment</package>
+		<package>de.dbsystems.einkauf.eflow.server.assignment</package>
+	</assignment>
+	<serializer>
+		<package>de.dbsystems.einkauf.eflow.server.serializer</package>
+		<package>org.jbpm.workflow.delegation.impl.serializer</package>
+	</serializer>
+</config>
+</database>

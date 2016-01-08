@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE faqs PUBLIC "-//APACHE//DTD FAQ V1.1//EN" "faq-v11.dtd">
+<faqs title="Frequently Asked Questions">
+  <part id="general">
+    <title>General</title>
+    <faq id="what">
+      <question>
+        What is NetBpm?
+      </question>
+      <answer>
+        <p>
+				NetBpm is a .Net Port of JBpm1. 
+				This Bpm Tool supports the build of Applications which are able to turn business models into executable software models. 
+				Business analysts are able to use a model driven approach to design, implement, execute and track business processes. 
+				So business people can easily react on business and strategy changes.
+        </p>
+      </answer>
+    </faq>
+    <faq id="cost">
+      <question>
+        What does it cost?
+      </question>
+      <answer>
+        <p>
+          NetBpm is open source and free. It is licensed under the Apache Software License, which allows it to be used even inside proprietary software.
+        </p>
+      </answer>
+    </faq>
+  </part>
+  <part id="development">
+    <title>Development</title>
+    <faq id="start_development">
+      <question>
+        What is the easiest way to start development with NetBpm?
+      </question>
+      <answer>
+        <p>
+          Download the NetBpm sources from <link href="http://sourceforge.net/cvs/?group_id=150889">CVS</link> and run the unit test. 
+          If you use Visual Studio I would recommend you to use <link href="http://www.testdriven.net">TestDriven.Net</link> to run the tests. 
+          A good example to start is <link href="http://cvs.sourceforge.net/viewcvs.py/netbpm/NetBpm/src/NetBpm.Test/Workflow/Example/HolidayTest.cs?view=markup">HolidayTest</link>.
+        </p>
+      </answer>
+    </faq>
+    <faq id="change_organisation">
+      <question>
+        My organisation doesn't store user and roles in the database. How can I integrate our security system?
+      </question>
+      <answer>
+        <p>
+          To integrate your security system you need to implement the interface <link href="http://cvs.sourceforge.net/viewcvs.py/netbpm/NetBpm/src/NetBpm/Workflow/Organisation/EComp/IOrganisationSessionLocal.cs?view=markup">IOrganisationSessionLocal</link>.
+          then change the default installation from <link href="http://cvs.sourceforge.net/viewcvs.py/netbpm/NetBpm/src/NetBpm/Workflow/Organisation/EComp/Impl/OrganisationEComp.cs?view=markup">OrganisationEComp</link> to our component.
+          The components are configured in file <link href="http://cvs.sourceforge.net/viewcvs.py/netbpm/NetBpm/src/NetBpm.Web/app_config.xml?view=markup">app_config.xml</link>.
+        </p>
+      </answer>
+    </faq>
+  </part>
+  <part id="docs">
+    <title>Documentation</title>
+    <faq id="forrest">
+      <question>
+        How can I help write documentation?
+      </question>
+      <answer>
+        <p>
+          This project uses <link href="ext:forrest">Apache Forrest</link> to
+          generate documentation from XML.  Please download a copy of Forrest,
+          which can be used to <link href="ext:forrest/validation">validate</link>, <link href="ext:forrest/webapp">develop</link> and render a project site.
+        </p>
+      </answer>
+    </faq>
+    <!-- More faqs or parts here -->
+  </part>
+  <!-- More faqs or parts here -->
+</faqs>

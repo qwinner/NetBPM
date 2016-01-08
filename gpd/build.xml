@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- ======================================================================= -->
+<!-- Description: Deploy file                                                -->
+<!--                                                                         -->
+<!-- Author:   $Author: pbolle $                                        -->
+<!--                                                                         -->
+<!-- Revision: $Revision: 1.3 $ $Date: 2006/02/12 20:55:37 $             -->
+<!-- History:
+     $Log: build.xml,v $
+     Revision 1.3  2006/02/12 20:55:37  pbolle
+     rename to netbpm
+
+     Revision 1.2  2006/01/29 12:31:50  pbolle
+     add new keystore and clean up the source
+
+     Revision 1.1  2006/01/29 08:34:24  pbolle
+     *** empty log message ***
+
+     Revision 1.8  2004/07/25 15:54:14  pbolle
+     extend readme
+
+     Revision 1.7  2004/04/26 18:55:09  pbolle
+     add fedback of tom
+
+     Revision 1.6  2004/04/24 08:24:49  pbolle
+     Bugfix and new ant target for the releas
+
+                                                                             -->
+<!-- ======================================================================= -->
+<project name="gpd" default="dist" basedir=".">
+
+	<description>buildfile for gpd</description>
+	
+	<!-- set global properties for this build -->
+	<property name="src" location="src"/>
+	<property name="build" location="build"/>
+	<property name="version" value="1.0beta2"/>
+	<property name="deploy.dir" location="deploy"/>
+	<property name="deploy.file" value="GPD_V${version}"/>
+	<property name="gpd.dir" value="gpd${version}"/>
+	<property name="bin.dir" location="${deploy.dir}/${gpd.dir}/bin"/>
+	<property name="dist" location="dist"/>
+	<property name="lib" location="lib"/>
+	
+	<path id="classpath">
+		<fileset dir="${lib}">
+			<include name="*.jar"/>
+		</fileset>
+	</path>
+	
+	<path id="classpath_dist">
+		<fileset dir="${lib}">
+			<include name="*.jar"/>
+		</fileset>
+		<fileset dir="${dist}">
+			<include name="*.jar"/>
+		</fileset>
+	</path>
+	
+	<target name="init">
+		<!-- Create the time stamp -->
+		<tstamp/>
+		<!-- Create the build directory structure used by compile -->
+		<mkdir dir="${build}"/>
+		<delete dir="${deploy.dir}" quiet="true"/>
+		<delete dir="${dist}" quiet="true"/>
+		<delete file="${deploy.file}" quiet="true"/>
+		<mkdir dir="${dist}"/>
+	</target>
+	
+	<target name="compile" depends="init" description="compile the source ">
+		<!-- Compile the java code from ${src} into ${build} -->
+		<javac srcdir="${src}" destdir="${build}">
+			<classpath refid="classpath"/>
+		</javac>
+	</target>
+	
+	<target name="dist" depends="compile" description="generate the distribution">
+		<!-- Create the distribution directory -->
+		<copy todir="${build}/gif">
+			<fileset dir="${src}/gif"/>
+		</copy>
+		<copy todir="${build}">
+			<fileset dir="data/conf">
+				<include name="*.xml"/>
+			</fileset>
+		</copy>
+		<jar jarfile="${dist}/gpd.jar" basedir="${build}">
+			<manifest>
+				<attribute name="Built-By" value="Jan-Philipp Bolle"/>
+				<attribute name="Main-Class" value="org.netbpm.gpd.ProcessDesigner"/>
+			</manifest>
+		</jar>
+	</target>
+	
+	<target name="run" depends="dist">
+		<java classname="org.netbpm.gpd.ProcessDesigner" fork="true">
+			<classpath refid="classpath_dist"/>
+		</java>
+	</target>
+		
+	<target name="copywebstart"  depends="init">
+		<mkdir dir="${deploy.dir}/lib"/>
+		<copy todir="${deploy.dir}/lib">
+			<fileset dir="${lib}"/>
+		</copy>
+		<copy todir="${deploy.dir}">
+			<fileset dir="data/web"/>
+		</copy>
+		<copy todir="${deploy.dir}/lib">
+			<fileset file="${dist}/gpd.jar"/>
+		</copy>
+	</target>
+	
+	<target name="sign" depends="dist,copywebstart">
+		<signjar keystore="data/keystore/netbpm.ks" storepass="netbpm.org" alias="pbolle">
+			<fileset file="${deploy.dir}/lib/*.jar"/>
+		</signjar>
+	</target>
+	
+	<target name="tarwebstart">
+	</target>
+	
+	<!-- ================================================================== -->
+	<!-- this target creats the webstart version                            -->
+	<!-- ================================================================== -->
+	<target name="webstart" depends="sign,tarwebstart">
+	</target>
+
+	<target name="copybatch" depends="init,dist">
+		<mkdir dir="${deploy.dir}/${gpd.dir}/lib"/>
+		<copy todir="${deploy.dir}/${gpd.dir}/lib">
+			<fileset dir="${lib}"/>
+		</copy>
+		<copy todir="${deploy.dir}/${gpd.dir}/lib">
+			<fileset file="${dist}/gpd.jar"/>
+		</copy>
+		<mkdir dir="${bin.dir}"/>
+		<copy todir="${bin.dir}">
+			<fileset file="data/bin/*"/>
+		</copy>
+		<copy todir="${deploy.dir}/${gpd.dir}">
+			<fileset file="readme.txt"/>
+		</copy>
+		<copy todir="${deploy.dir}/${gpd.dir}/doc/license">
+			<fileset file="doc/license/*.txt"/>
+		</copy>
+		<copy todir="${deploy.dir}/${gpd.dir}/data/example">
+			<fileset file="data/example/*.gpd"/>
+		</copy>
+	</target>
+
+	<target name="tarbatch" depends="copybatch">
+		<fixcrlf srcdir="${deploy.dir}" eol="lf" includes="**/*.sh, **/*.properties, **/env, **/*.txt"/>
+		<tar tarfile="${deploy.file}.tar">
+			<tarfileset dir="${deploy.dir}" mode="755">
+				<include name="**/*.sh"/>
+				<include name="**/env"/>
+			</tarfileset> 
+			<tarfileset dir="${deploy.dir}" mode="644">
+				<include name="**/*"/>
+				<exclude name="**/*.sh"/>
+				<exclude name="**/env"/>
+			</tarfileset> 
+  		</tar>
+		<gzip src="${deploy.file}.tar" zipfile="${deploy.file}.tar.gz"/>
+		<delete file="${deploy.file}.tar" quiet="true"/>
+
+		<zip destfile="${deploy.file}.zip">
+    		<fileset dir="${deploy.dir}"/>
+  		</zip>
+   	</target>
+
+	<!-- ================================================================== -->
+	<!-- this target creats the batch version                               -->
+	<!-- ================================================================== -->
+	<target name="batch" depends="tarbatch">
+	</target>
+</project>

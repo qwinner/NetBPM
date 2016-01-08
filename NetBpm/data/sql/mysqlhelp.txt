@@ -1,0 +1,20 @@
+link
+-----
+http://souptonuts.sourceforge.net/readme_mysql.htm
+
+info commands
+-------------
+show databases;
+show processlist; 
+show status;
+show innodb status;
+
+create nbpm user and database
+-----------------------------
+CREATE DATABASE nbpm;
+
+mysql --user=root mysql
+INSERT INTO user (Host,User,Password) VALUES('%','nbpm',PASSWORD('nbpm'));
+
+INSERT INTO db (Host,Db,User,Select_priv,Insert_priv, Update_priv,Delete_priv,Create_priv,Drop_priv) VALUES('%','nbpm','nbpm','Y','Y','Y','Y','Y','Y');
+FLUSH PRIVILEGES;

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright 2002-2005 The Apache Software Foundation or its licensors,
+  as applicable.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE document PUBLIC "-//APACHE//DTD Documentation V2.0//EN" "http://forrest.apache.org/dtd/document-v20.dtd">
+<document> 
+  <header> 
+    <title>Welcome to NetBpm</title> 
+  </header> 
+  <body> 
+    <section id="overview">
+      <title>What is NetBpm?</title>
+        <p>
+				NetBpm is a .Net Port of JBpm1. NetBpm is an open source platform for building, executing and managing workflows.
+				It is very simple to use and integrate in other .Net applications.
+        </p>
+        <p>
+				This Bpm Tool supports the build of Applications which are able to turn business models into executable software models. 
+				Business analysts are able to use a model driven approach to design, implement, execute and track business processes. 
+				So business people can easily react on business and strategy changes.
+        </p>
+    </section>
+    <section>
+      <title>Top Features and Benefits</title>
+      <ul>
+        <li>100% .Net and browser hosted</li>
+        <li>100% Open Source</li>
+        <li>works on Microsoft .Net and Mono</li>
+        <li>Human-Oriented Collaborative Features</li>
+        <li>Powerful Process Automation with Flexibility</li>
+        <li>support for Business Activity Monitoring</li>
+      </ul>
+    </section>
+
+  </body>
+</document>

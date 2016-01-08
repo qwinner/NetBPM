@@ -1,0 +1,880 @@
+<?xml version="1.0"?>
+<!DOCTYPE document PUBLIC "-//APACHE//DTD Documentation V2.0//EN" "http://forrest.apache.org/dtd/document-v20.dtd">
+<document>
+  <header>
+    <title>nPdl</title>
+  </header>
+  <body>
+    <section id="whatisnpdl">
+      <title>What is nPdl</title>
+      <p>nPdl is the acronym for 'NetBpm process definition language'. It describes the format for expressing a business process. nPdl specifies the following</p>
+      <ul>
+        <li>how the business process logic should be expressed in xml</li>
+        <li>how to express optional web-interface information to let the NetBpm web application generate web-forms for every step of the process</li>
+        <li>how the execution of your .NET-classes can be coupled to the process logic</li>
+        <li>how all the files for one business process are packed together in a archive</li>
+      </ul>
+      <p>So nPdl is more then just an xml-schema. It describes how to express a business process in a process archive including the application integration aspect.
+       The next image shows the basic terminology that is used in nPdl to express a business process.</p>
+      <figure src="../images/anatomy.gif" alt="" width="377" height="422"/>
+    </section>
+    <section id="processarchives">
+      <title>Process archives</title>
+      <p>A process archive is a zipfile that contains xml-files, .NET assembly and other files. All the information in a process archive specifies
+       one process definition. The assemblies in a process archive are associated with the process definition and are not visible outside that scope. 
+      (They are loaded with a process-definition-specific-classloader). Analogue to the classloading mechanism of web-archives and bean-archives.
+			</p>
+			<note>dynamic loading of assemblies is not yet supported</note>			
+      <table>
+        <tr>
+        	<td>
+    				<source>
+ 
+	/root
+	  |
+	  +- processdefinition.xml
+	  |
+	  +- web
+	  |   +- webinterface.xml
+	  |   +- activitydiagram.gif
+	  |   
+	  +- assemblies
+	      +- MyActions.dll
+
+      				</source>  
+          	</td>
+          </tr>
+        </table>
+        <p><em>example of a typical layout of a process archive</em></p>
+				<p>Three names of a process archive are fixed :</p>
+				<ul>
+				  <li><strong>processdefinition.xml</strong> : must be in the root of the process archive and contains the process logic.</li>
+				  <li><strong>assemblies</strong> : this folder contains .Net assemblies that are associated with this process definition. (the assemblies will be 
+				    stored in the NetBpm database)</li>
+				  <li><strong>web/webinterface.xml</strong> : this file is optional but if you want to add web-form generation to your pages,
+				    this must be the name of the file-name.</li>
+				</ul>
+				<p>Process archives are deployed into the NetBpm application through e.g. the NetBpm web-application
+				that uses file-upload, an nant-task or directly the interface of the definition component.  The 
+				definition component will parse the process archive, store the information in the NetBpm-database and
+				discard the process archive file.  After a process has been deployed, users (or systems) are able 
+				to perform single activities through the execution component.
+				</p>
+				<note>nant-task is not yet supported</note>			
+				<p>See also <a href="architecture.html#theNetBpmdatabase">The NetBpm database</a></p>
+     </section>
+	    <section id="processlogic">
+	      <title>Process logic</title>
+				<p>This section explains the schema of the <strong><code>processdefinition.xml</code></strong>. 
+						The description of the schema use the type attribute and element.</p>
+				<p><strong>Element</strong> : a element is an XML element</p>
+				<p><strong>Property</strong> : a property is an attribute that can also be supplied as an element. 
+				It is possible to write a property as a XML property or a XML element. See the following example.</p>
+	      <table>
+	        <tr>
+	        	<td>
+	    				<source>
+  ...
+  &lt;image&gt;
+    &lt;name&gt;myimagefile.gif&lt;/name&gt;
+    &lt;mime-type&gt;image/gif&lt;/mime-type&gt;
+    &lt;width&gt;345&lt;/width&gt;
+    &lt;height&gt;53&lt;/height&gt;
+  &lt;/image&gt;
+  ...
+  
+  can also be expressed as
+  
+  ...
+  &lt;image name="myimagefile.gif" mime-type="image/gif" width="345" height="53" /&gt;
+  ...
+  
+  or a combination of both notations.
+        				</source>  
+          	</td>
+          </tr>
+        </table>
+        <p><em>properties can be supplied as attributes or as child-elements</em></p>
+	    <section id="processdefinition">
+	      <title>Process definition</title>
+				<p>The <code>process-definition</code> is the document root tag. A <code>process-definition</code>
+				contains the process logic for one business process.  Only one <code>process-definition</code> is 
+				allowed in a processdefinition.xml.
+				</p>
+	      <table>
+	        <tr>
+	          <th>name</th>
+	          <th>multiplicity</th>
+	          <th>type <a href="#property"></a></th>
+	          <th>description</th>
+	        </tr>
+	        <tr>
+	        	<td>name</td>
+	        	<td>1</td>
+	        	<td>property</td>
+	        	<td>is the name of the process definition. Note that
+	      		this name is also used in the 
+	      		<a href="usersmanual.html#versionsofprocessdefinitions">versioning mechanism</a></td>
+	        </tr>
+	        <tr>
+	        	<td>description</td>
+	        	<td>0-1</td>
+	        	<td>property</td>
+	        	<td>general purpose description of the business process</td>
+	        </tr>
+	        <tr>
+	        	<td>responsible</td>
+	        	<td>0-1</td>
+	        	<td>property</td>
+	        	<td>is the user responsible for this process</td>
+	        </tr>
+	        <tr>
+	        	<td>authorization</td>
+	        	<td>0-1</td>
+	        	<td>element</td>
+	        	<td>allows to specify a custom authorization implementation that can validate every action that
+	      				is done through the execution or the admin components. <a href="#authorization">see authorization</a>
+	      		</td>
+	        </tr>
+	        <tr>
+	        	<td>start-state</td>
+	        	<td>1</td>
+	        	<td>element</td>
+	        	<td>the unique start state of the process. <a href="#startstate">see start-state</a></td>
+	        </tr>
+				  <tr>
+				    <td>end-state</td>
+				    <td>1</td>
+				    <td>element</td>
+				    <td>the unique end state of the process. <a href="#endstate">see end-state</a></td>
+				  </tr>
+				  <tr>
+				    <td>attribute</td>
+				    <td>0-n</td>
+				    <td>element</td>
+				    <td>the attribute defined here result in attribute instances created for the root-flow. 
+				      <a href="#attribute">see attribute</a>
+				    </td>
+				  </tr>
+				  <tr>
+				    <td>activity-state</td>
+				    <td>0-n</td>
+				    <td>element</td>
+				    <td>define the wait states where the process will have to wait on input or a trigger
+				      from human users or systems external to NetBpm. <a href="#activitystate">see activity-state</a>
+				    </td>
+				  </tr>
+				  <tr>
+				    <td>process-state</td>
+				    <td>0-n</td>
+				    <td>element</td>
+				    <td>defines a state in the process that corresponds with the complete execution 
+				      of another process.  <a href="#processstate">see process-state</a>
+				    </td>
+				  </tr>
+				  <tr>
+				    <td>decision</td>
+				    <td>0-n</td>
+				    <td>element</td>
+				    <td>defines a choice between multiple paths of execution. <a href="#decision">see decision</a> </td>
+				  </tr>
+				  <tr>
+				    <td>concurrent-block</td>
+				    <td>0-n</td>
+				    <td>element</td>
+				    <td>defines a block with a fork, join and everything in between.  Note that transitions cannot
+				      cross concurrent-block boundaries. <a href="#concurrentblock">see concurrent-block</a> </td>
+				  </tr>
+				  <tr>
+				    <td>action</td>
+				    <td>0-n</td>
+				    <td>element</td>
+				    <td>defines an action relative to the process-definition. The valid event-types for 
+				      <code>process-definition</code>-actions are <code>process-instance-start</code>, <code>process-instance-end</code> 
+				      and <code>process-instance-cancel</code>. 
+				      <a href="#action">see action</a> 
+				    </td>
+				  </tr>
+	      </table>
+	    </section>
+	    <section id="startstate">
+	      <title>Start-state</title>
+				<p>The <code>start-state</code> defines the starting point for the process definition.  All process instances
+				will start in the <code>start-state</code>.  The rules for leaving transitions and attributeValues input for
+				<code>start-state</code>s are the same as for standard activity-states.  For that explanation, please refer to 
+				<a href="#performinganactivity">Performing an activity</a>.  Note that it is not allowed for transitions to 
+				arrive in the <code>start-state</code>.
+				</p>
+				<table>
+				  <tr>
+				    <th>name</th>
+				    <th>multiplicity</th>
+				    <th> <a href="#property">type</a></th>
+				    <th>description</th>
+				  </tr>
+				  <tr>
+				    <td>name</td>
+				    <td>1</td>
+				    <td>property</td>
+				    <td>is the name of the <code>start-state</code></td>
+				  </tr>
+				  <tr>
+				    <td>description</td>
+				    <td>0-1</td>
+				    <td>property</td>
+				    <td>general purpose description of the <code>start-state</code></td>
+				  </tr>
+				  <tr>
+				    <td>role</td>
+				    <td>0-1</td>
+				    <td>property</td>
+				    <td><a href="#activityassignment">see Activity assignment</a></td>
+				  </tr>
+				  <tr>
+				    <td>field</td>
+				    <td>0-n</td>
+				    <td>element</td>
+				    <td>can be used to restrict access to an attribute or make the input of an 
+				      attribute-value required. <a href="#field">see field</a>
+				    </td>
+				  </tr>
+				  <tr>
+				    <td>action</td>
+				    <td>0-n</td>
+				    <td>element</td>
+				    <td>defines an action relative to the activity-state. The valid event-types for 
+				      <code>start-state</code>-actions are <code>before-perform-of-activity</code> and <code>after-perform-of-activity</code>. 
+				      To schedule an action after the attributeValues are set and before the processing of the transitions, you
+				      have to put an action in the <code>process-definition</code> with event-type <code>process-instance-start</code>
+				      <a href="#action">see action</a> 
+				    </td>
+				  </tr>
+				  <tr>
+				    <td>transition</td>
+				    <td>1-n</td>
+				    <td>element</td>
+				    <td>are the transitions leaving this node. <a href="#transition">see transition</a></td>
+				  </tr>
+				</table>
+	    </section>
+	    <section id="endstate">
+	      <title>End-state</title>
+	      <p>Defines the end-state of this process definition. A process-definition would have an end-state.</p>
+				<table>
+				  <tr>
+				    <th>name</th>
+				    <th>multiplicity</th>
+				    <th><a href="#property">type</a></th>
+				    <th>description</th>
+				  </tr>
+				  <tr>
+				    <td>name</td>
+				    <td>1</td>
+				    <td>property</td>
+				    <td>is the name of the <code>end-state</code></td>
+				  </tr>
+				</table>
+	    </section>
+	    <section id="activitystate">
+	      <title>Activity-state</title>
+				<p>An <code>activity-state</code> is a state in the process where you wait for an external party 
+				(human user or system).  An <code>activity-state</code> specifies that the 'thread-of-execution'
+				is outside the scope of the process engine.  All actions that should be executed by the process
+				engine in the context of a process instance should be modelled as <a href="#action"><code>action</code></a>s
+				</p>
+				<table>
+				  <tr>
+				    <th>name</th>
+				    <th>multiplicity</th>
+				    <th><a href="#property">type</a></th>
+				    <th>description</th>
+				  </tr>
+				  <tr>
+				    <td>name</td>
+				    <td>1</td>
+				    <td>property</td>
+				    <td>is the name of the <code>activity-state</code></td>
+				  </tr>
+				  <tr>
+				    <td>description</td>
+				    <td>0-1</td>
+				    <td>property</td>
+				    <td>general purpose description of the <code>activity-state</code></td>
+				  </tr>
+				  <tr>
+				    <td>assignment</td>
+				    <td>0-1</td>
+				    <td>element</td>
+				    <td><a href="#activityassignment">see Activity assignment</a></td>
+				  </tr>
+				  <tr>
+				    <td>role</td>
+				    <td>0-1</td>
+				    <td>property</td>
+				    <td><a href="#activityassignment">see Activity assignment</a></td>
+				  </tr>
+				  <tr>
+				    <td>field</td>
+				    <td>0-n</td>
+				    <td>element</td>
+				    <td>can be used to restrict access to an attribute or make the input of an 
+				      attribute-value required. <a href="#field">see field</a>
+				    </td>
+				  </tr>
+				  <tr>
+				    <td>action</td>
+				    <td>0-n</td>
+				    <td>element</td>
+				    <td>defines an action relative to the activity-state. The valid event-types for 
+				      <code>activity-state</code>-actions are <code>before-perform-of-activity</code> (which is
+				      before the attributeValues are stored in the attribute instances),&nbsp;<code>perform-of-activity</code>,&nbsp;<code>after-perform-of-activity</code> (which is after the engine has processed all transitions),&nbsp;<code>before-activitystate-assignment</code>, and <code>after-activitystate-assignment</code>.
+				      <a href="#action">see action</a> 
+				    </td>
+				  </tr>
+				  <tr>
+				    <td>transition</td>
+				    <td>1-n</td>
+				    <td>element</td>
+				    <td>are the transitions leaving this node. <a href="#transition">see transition</a></td>
+				  </tr>
+				</table>
+		    <section id="activityassignment">
+		      <title>Activity assignment</title>
+		      <p>If you're not familiar with the organisation component read <a href="architecture.html#theorganisationcomponent">The organisation component</a>.</p>
+					<p>To assign an activity-state to an actor, the process developer has 2 mechanisms</p>
+					<ol>
+					  <li><strong>AssignmentHandler</strong> : an AssignmentHandleris an interface with one method.
+					  When the execution arrives in an activity, first is checked if that activity-state
+					  has an AssignmentHandler.  
+					  
+			      <table>
+			        <tr>
+			        	<td>
+			    				<source>
+		public interface IAssignmentHandler
+		{
+			String SelectActor(IAssignmentContext assignerContext);
+		}
+		        			</source>  
+		          	</td>
+		          </tr>
+		        </table>
+		 			  <em>The AssignmentHandler interface</em>
+					  
+					  If it does, the specified class is instantiated and the 
+					  method is called.  The implementation must then return the ID of the Actor that must
+					  be assigned to the activity.  see <a href="architecture.html#thedelegationprinciple">the 
+					  delegation principle</a></li> 
+					  <li><strong>role</strong> : if an activity-state does not have an AssignmentHandler, it
+					  must have a role specified. The value of a role for an activity must be the name 
+					  of an attribute. As a consequence, you must declare an attribute of type 'actor' for the 
+					  role.  A role corresponds with a swimlane in the UML activity
+					  diagram.  If both an AssignmentHandler and
+					  a role are specified, the AssignmentHandler will be used to select the actor
+					  and that actor is also stored in the attribute instance.  If only a role is
+					  specified and no AssignmentHandler, the activity-state is assigned to the 
+					  actor in the attribute instance specified by the role.  Note that in the latter
+					  case the attribute instance may not contain a null-value.</li> 
+					</ol>
+	    	</section>
+	    </section>
+	    <section id="processstate">
+	      <title>Process-state</title>
+				<p>Specifies one process-state in the UML-activity-diagram. A process-state is a state in the 
+				process which corresponds to the execution of a another process-instance.  We say that the
+				parent process invokes a sub-process.  When execution arrives in such a state, the sub-
+				process will be started.  The termination of the sub-process-instance triggers the parent 
+				process to regard the process-state as completed and continue execution.</p>
+				<table>
+				  <tr>
+				    <th>name</th>
+				    <th>multiplicity</th>
+				    <th><a href="#property">type</a></th>
+				    <th>description</th>
+				  </tr>
+				  <tr>
+				    <td>name</td>
+				    <td>1</td>
+				    <td>property</td>
+				    <td>The name of the <code>process-state</code>.</td>
+				  </tr>
+				  <tr>
+				    <td>description</td>
+				    <td>0-1</td>
+				    <td>property</td>
+				    <td>general purpose description of the <code>process-state</code></td>
+				  </tr>
+				  <tr>
+				    <td>process</td>
+				    <td>1</td>
+				    <td>property</td>
+				    <td>The name of sub-process. Note that the latest version of the 
+				     sub-process will be associated during deployment.  If later new versions of the 
+				     sub-process will be deployed, this will have no impact on the process-invocation.</td>
+				  </tr>
+				  <tr>
+				    <td>actor-expression</td>
+				    <td>1</td>
+				    <td>property</td>
+				    <td>specifies the actor that is used to start the sub-process-instance</td>
+				  </tr>
+				  <tr>
+				    <td>process-invocation</td>
+				    <td>1</td>
+				    <td>element</td>
+				    <td><a href="#processinvocation">see process-invocation</a> element for details</td>
+				  </tr>
+				  <tr>
+				    <td>action</td>
+				    <td>0-n</td>
+				    <td>element</td>
+				    <td>defines an action relative to the process-state. The valid event-types for 
+				      <code>process-state</code>-actions are <code>sub-process-instance-start</code>,&nbsp;<code>process-instance-start</code>.
+				      <a href="#action">see action</a> 
+				    </td>
+				  </tr>
+				  <tr>
+				    <td>transition</td>
+				    <td>1-n</td>
+				    <td>element</td>
+				    <td>are the transitions leaving this node. <a href="#transition">see transition</a></td>
+				  </tr>
+				</table>
+	    </section>
+	    <section id="attribute">
+	      <title>Attribute</title>
+				<p>Defines the attributes used in this process definition. 
+				<!--For more information about attributes see <a href="http://NetBpm.org/execution.html#attributes">http://NetBpm.org/execution.html#attributes</a>-->
+				</p>
+				<table>
+				  <tr>
+				    <th>name</th>
+				    <th>multiplicity</th>
+				    <th><a href="#property">type</a></th>
+				    <th>description</th>
+				  </tr>
+				  <tr>
+				    <td>name</td>
+				    <td>1</td>
+				    <td>property</td>
+				    <td>is the name of the <code>attribute</code></td>
+				  </tr>
+				  <tr>
+				    <td>description</td>
+				    <td>0-1</td>
+				    <td>property</td>
+				    <td>general purpose description of the <code>attribute</code></td>
+				  </tr>
+				  <tr>
+				    <td>initial-value</td>
+				    <td>0-1</td>
+				    <td>property</td>
+				    <td>the initial value for the attribute in serialized format.</td>
+				  </tr>
+				  <tr>
+				    <td>serializer</td>
+				    <td>1</td>
+				    <td>property</td>
+				    <td>For storing attribute .NET-objects into the database, they have to be serialized to 
+				     text. This property specifies how the attribute .NET-objects get serialized. 
+					 This must be a fully qualified .NET class name. Customised implementation must implement
+				     NetBpm.Workflow.Delegation.ISerializer</td>
+				  </tr>
+				  <tr>
+				    <td>type</td>
+				    <td>1</td>
+				    <td>property</td>
+				    <td>The type attribute values are in fact short names for predefined serializers. There are several 'built-in' types in NetBpm:<br/>
+						  <ul>
+							  <li>type="actor" for 'NetBpm.Workflow.Delegation.Impl.Serializer.ActorSerializer'</li>
+								<li>type="text" for 'NetBpm.Workflow.Delegation.Impl.Serializer.TextSerializer'</li>
+								<li>type="long" for 'NetBpm.Workflow.Delegation.Impl.Serializer.LongSerializer'</li>
+								<li>type="float" for 'NetBpm.Workflow.Delegation.Impl.Serializer.FloatSerializer'</li>
+								<li>type="date" for 'NetBpm.Workflow.Delegation.Impl.Serializer.DateSerializer'</li>
+								<li>type="evaluation" for 'NetBpm.Workflow.Delegation.Impl.Serializer.EvaluationSerializer'</li>
+						  </ul>
+					 If the 'serializer' property has been specified, 'type' <strong>must not</strong> be specified and vice versa.
+				    </td>
+				  </tr>
+				  <tr>
+				    <td>parameter</td>
+				    <td>0-n</td>
+				    <td>element</td>
+				    <td><a href="#parameter">see parameter</a> for details</td>
+				  </tr>
+				</table>
+	    </section>
+	    <section id="decision">
+	      <title>Decision</title>
+				<p>A decision selects one of multiple possible execution paths. To make a decision when an activity is being performed, the process modeller has 2 options : </p>
+				<ol>
+				  <li>Leave the choice to the client.  This is a situation where multiple transitions leave an activity.  
+				  		This means that the client has to supply the selected transition name in the <code>PerformActivity(...)</code> method.</li>
+				  <li>Let the engine decide automatically : In this case one transition leaves an activity and arrives in a decision-node.  
+				  		The decision will automatically (based upon the attributes and all desired external resources) make a decision about which leaving transition to take.</li>
+				</ol>
+				<p>Both approaches can be combined.</p>
+				<table>
+				  <tr>
+				    <th>name</th>
+				    <th>multiplicity</th>
+				    <th><a href="#property">type</a></th>
+				    <th>description</th>
+				  </tr>
+				  <tr>
+				    <td>name</td>
+				    <td>1</td>
+				    <td>property</td>
+				    <td>The name of the <code>decision</code>.</td>
+				  </tr>
+				  <tr>
+				    <td>handler</td>
+				    <td>1</td>
+				    <td>property</td>
+				    <td>Implementation of DecisionHandler to decide which path (transition) to take</td>
+				  </tr>
+				  <tr>
+				    <td>parameter</td>
+				    <td>0-n</td>
+				    <td>element</td>
+				    <td><a href="#parameter">see parameter</a> for details</td>
+				  </tr>
+				  <tr>
+				    <td>transition</td>
+				    <td>1-n</td>
+				    <td>element</td>
+				    <td>are the transitions leaving this node. <a href="#transition">see transition</a></td>
+				  </tr>
+				</table>
+	    </section>
+	    <section id="processblock">
+	      <title>Process block</title>
+	      <p>
+				The common parts of a concurrent-block and a process-definition is
+				a process-block.
+				
+				I'll explain the concurrent block : In process languages you have
+				the block-structured approach (e.g. BPML) and the graph based approach (e.g.
+				XPDL).  NetBpm combines best of both worlds.  Where possible, NetBpm allows graph-based
+				approach (free transitions between nodes).  This gets problematic when forking
+				and joining therefor a fork always is associated with a join and those two define
+				a concurrent block.  No transitions can cross the concurrent block boundary.
+				Concurrent blocks can be nested.
+				
+				Another communality of process definitions and concurrent blocks is the fact
+				that they can define attributes : Attributes, defined in a process definitions
+				are instantiated at process-instance-creation-time and attributes that are defined
+				in a process block are instantiated for each flow that is forked at the beginning
+				of the block.
+	      </p>
+	    </section>
+	    <section id="concurrentblock">
+	      <title>Concurrent block</title>
+				<p>A concurrent-block exists of a fork, a join and all process elements that are defined in 
+				this concurrent-block.  Note that transitions cannot cross concurrent-block boundaries 
+				except for transitions to the fork and transitions leaving the join.  A concurrent block 
+				can also declare flow-local attributes.</p>
+				<table>
+				  <tr>
+				    <th>name</th>
+				    <th>multiplicity</th>
+				    <th><a href="#property">type</a></th>
+				    <th>description</th>
+				  </tr>
+				  <tr>
+				    <td>fork</td>
+				    <td>1</td>
+				    <td>element</td>
+				    <td>is the fork of the concurrent block</td>
+				  </tr>
+				  <tr>
+				    <td>join</td>
+				    <td>1</td>
+				    <td>element</td>
+				    <td>is the join of the concurrent block</td>
+				  </tr>
+				  <tr>
+				    <td>attribute</td>
+				    <td>0-n</td>
+				    <td>element</td>
+				    <td>specifies a flow-local attribute</td>
+				  </tr>
+				  <tr>
+				    <td>activity-state</td>
+				    <td>0-n</td>
+				    <td>element</td>
+				    <td><a href="#activitystate">see activity-state</a> for details</td>
+				  </tr>
+				  <tr>
+				    <td>process-state</td>
+				    <td>0-n</td>
+				    <td>element</td>
+				    <td><a href="#processstate">see process-state</a> for details</td>
+				  </tr>
+				  <tr>
+				    <td>decision</td>
+				    <td>0-n</td>
+				    <td>element</td>
+				    <td><a href="#decision">see decision</a> for details</td>
+				  </tr>
+				  <tr>
+				    <td>concurrent-block</td>
+				    <td>0-n</td>
+				    <td>element</td>
+				    <td>concurrent-blocks can be nested recursively</td>
+				  </tr>
+				  <tr>
+				    <td>action</td>
+				    <td>0-n</td>
+				    <td>element</td>
+				    <td><a href="#action">see action</a> for details</td>
+				  </tr>
+				</table>
+	    </section>
+	    <section id="fork">
+	      <title>Fork</title>
+	      <ul>
+	        <li>Standard behaviour
+			       <ul>
+				       <li>describe what the standard behaviour is</li> 
+				       <li>standard behaviour does not require specification of a ForkHandler or JoinHandler</li>
+			       </ul>
+			    </li>
+			    <li>A ForkHandler can start flows for leaving transitions.  Note that more then one
+			      flow can be started for the same transition.</li>
+			    <li>Synchronization of flows :</li>
+			  </ul>
+				<table>
+				  <tr>
+				    <th>name</th>
+				    <th>multiplicity</th>
+				    <th><a href="#property">type</a></th>
+				    <th>description</th>
+				  </tr>
+				  <tr>
+				    <td>name</td>
+				    <td>1</td>
+				    <td>property</td>
+				    <td>the name of this fork</td>
+				  </tr>
+				  <tr>
+				    <td>transition</td>
+				    <td>1-n</td>
+				    <td>element</td>
+				    <td>the multiple path of executions. Should be name of node</td>
+				  </tr>
+				  <tr>
+				    <td>handler</td>
+				    <td>0-1</td>
+				    <td>property</td>
+				    <td>Implementation of ForkHandler. Defines how the transitions
+				    should be forked. If not defined, each transition is forked sequentially</td>
+				  </tr>
+				  <tr>
+				    <td>parameter</td>
+				    <td>0-n</td>
+				    <td>element</td>
+				    <td><a href="#parameter">see parameter</a> for details</td>
+				  </tr>
+				</table>
+	    </section>
+	    <section id="join">
+	      <title>Join</title>
+				<p>A join is used to synchronize multiple paths of execution that were created at the a fork.</p>
+				<table>
+				  <tr>
+				    <th>name</th>
+				    <th>multiplicity</th>
+				    <th><a href="#property">type</a></th>
+				    <th>description</th>
+				  </tr>
+				  <tr>
+				    <td>name</td>
+				    <td>1</td>
+				    <td>property</td>
+				    <td>the name of this fork</td>
+				  </tr>
+				  <tr>
+				    <td>action</td>
+				    <td>0-n</td>
+				    <td>element</td>
+				    <td><a href="#action">see action</a> for details</td>
+				  </tr>
+				  <tr>
+				    <td>transition</td>
+				    <td>1-n</td>
+				    <td>element</td>
+				    <td><a href="#transition">see transition</a> for details</td>
+				  </tr>
+				  <tr>
+				    <td>handler</td>
+				    <td>0-1</td>
+				    <td>property</td>
+				    <td>Implementation of JoinHandler. Defines when parent-flow should 
+				    be activated. If not defined, parent-flow will be activated when all flows arrives.</td>
+				  </tr>
+				  <tr>
+				    <td>parameter</td>
+				    <td>0-n</td>
+				    <td>element</td>
+				    <td><a href="#parameter">see parameter</a> for details</td>
+				  </tr>
+				</table>
+	    </section>
+	    <section id="transition">
+	      <title>Transition</title>
+				<p>specifies one transition in the UML-activity-diagram.  To understand the restrictions of
+				transitions, first a word about process blocks.  A process block is a scope for attributes
+				and nodes.  A process-definition is process block.  A concurrent-block is also a process
+				block.  Transitions may not cross process block boundaries.  This means that all forked
+				execution-paths (= flows) that are forked at a fork, have to be joined in the join of the
+				same concurrent block.</p>
+				<table>
+				  <tr>
+				    <th>name</th>
+				    <th>multiplicity</th>
+				    <th><a href="#property">type</a></th>
+				    <th>description</th>
+				  </tr>
+				  <tr>
+				    <td>name</td>
+				    <td>1</td>
+				    <td>property</td>
+				    <td>the name of the transition.</td>
+				  </tr>
+				  <tr>
+				    <td>to</td>
+				    <td>1</td>
+				    <td>property</td>
+				    <td>the name of the destination element of the transition.  Can be an 
+				     activity-state, a process-state, a decision, a fork or a join. (Should be name 
+				     of Node in same process block)</td>
+				  </tr>
+				  <tr>
+				    <td>action</td>
+				    <td>0-n</td>
+				    <td>element</td>
+				    <td><a href="#action">see action</a> for details</td>
+				  </tr>
+				</table>
+	    </section>
+	    <section id="action">
+	      <title>Action</title>
+				<p>An <code>action</code> is a piece of software that has to be executed by the
+				process-engine within the context of a process execution.  So actions are executed within
+				the 'thread-of-execution' of the process engine.  Examples of usages are e.g.
+				sending an email, updating a database, getting some info from an SAP-system, ... The
+				<code>handler</code> specifies a .NET-class that implements the <code>NetBpm.Workflow.Delegation.IActionHandler</code> 
+				interface. An <code>action</code> element also specifies when the action has to be esxecuted.  The timing is
+				determined by two factors : 1) the surrounding process element and 2) the event-type which specifies an event
+				relative to the surrounding process element.  Let's illustrate with an example</p>
+	      <table>
+	        <tr>
+	        	<td>
+	    				<source>
+  ...
+  &lt;decision handler="Yourproject.Decisions.HasBigSalary"&gt;
+    &lt;action event="before-decision" handler="Yourproject.Actions.GetInfoFromSAP" /&gt;
+  &lt;/decision&gt;
+  ...
+        				</source>  
+	        	</td>
+	        </tr>
+	      </table>
+        <p><em>specification of an action before a decision is made</em></p>
+				<table>
+				  <tr>
+				    <th>name</th>
+				    <th>multiplicity</th>
+				    <th><a href="#property">type</a></th>
+				    <th>description</th>
+				  </tr>
+				  <tr>
+				    <td>event</td>
+				    <td>1</td>
+				    <td>property</td>
+				    <td></td>
+				  </tr>
+				  <tr>
+				    <td>handler</td>
+				    <td>1</td>
+				    <td>property</td>
+				    <td></td>
+				  </tr>
+				  <tr>
+				    <td>parameter</td>
+				    <td>0-n</td>
+				    <td>element</td>
+				    <td><a href="#parameter">see parameter</a> for details</td>
+				  </tr>
+				  <tr>
+				    <td>on-exception</td>
+				    <td>0-1</td>
+				    <td>attribute</td>
+				    <td></td>
+				  </tr>
+				</table>
+	    </section>
+	    <section id="authorization">
+	      <title>Authorization</title>
+	    </section>
+    </section>
+<!--    <section id="attributes">
+      <title>Attributes</title>
+	    <sectionid="generalprinciple">
+	      <title>General principle</title>
+	    </section>
+	    <section id="attributetypes">
+	      <title>Attributes types</title>
+	    </section>
+	    <section id="flowlocalattributes">
+	      <title>Flow-local attributes</title>
+	    </section>
+    </section>-->
+    <section id="theruntimemodel">
+      <title>The runtime model</title>
+      <p>
+			Note that UML does not specify a runtime-model for activity diagrams.
+			Since NetBpm is just a run-time executor of activity diagrams, we will need to
+			clarify certain aspects of the activity-diagram modelling.
+      </p>
+	    <section id="performinganactivity">
+	      <title>Performin an activity</title>
+	      <ol>
+					<li>1 leaving transition versus multiple leaving transitions</li>
+					<li>performing an activity is a trigger</li>
+					<li>while performing an activity, you can feed attributeValues into the process.</li>
+	      </ol>
+	    </section>
+	    <section id="delegation">
+	      <title>Delegation</title>
+	    </section>
+	    <section id="transactions">
+	      <title>Transactions</title>
+	    </section>
+	    <section id="security">
+	      <title>Security</title>
+	    </section>
+    </section>
+    <section id="schema">
+      <title>Schema</title>
+	    <section>
+	      <title>The process archive format</title>
+	    </section>
+	    <section>
+	      <title>The processdefinition.xml schema</title>
+	    </section>
+	    <section>
+	      <title>The webinterface.xml schema</title>
+	    </section>
+    </section>
+    <section id="definitionmodelclassdiagram">
+      <title>Definition model class diagram</title>
+      <figure src="../images/definitionmodel.gif" alt=""/>
+			<p><em>The process definition class diagram</em></p>
+	    <section>
+	      <title>Graph-oriented versus block-structured</title>
+	    </section>
+    </section>
+  </body>
+</document>

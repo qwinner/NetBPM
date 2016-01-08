@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.0">
+    <class
+        name="NetBpm.Workflow.Execution.Impl.ProcessInstanceImpl, NetBpm"
+        table="NBPM_PROCESSINSTANCE"
+        dynamic-update="false"
+        dynamic-insert="false"
+    >
+
+        <id
+            name="Id"
+            column="id"
+            type="long"
+            unsaved-value="0"
+        >
+            <generator class="increment">
+            </generator>
+        </id>
+
+        <property
+            name="StartNullable"
+            type="Nullables.NHibernate.NullableDateTimeType, Nullables.NHibernate"
+            update="true"
+            insert="true"
+            column="start_"
+        />
+
+        <property
+            name="EndNullable"
+            type="Nullables.NHibernate.NullableDateTimeType, Nullables.NHibernate"
+            update="true"
+            insert="true"
+            column="end_"
+        />
+
+        <property
+            name="InitiatorActorId"
+            type="string"
+            update="true"
+            insert="true"
+            column="initiatorActorId"
+        />
+
+        <many-to-one
+            name="ProcessDefinition"
+            class="NetBpm.Workflow.Definition.Impl.ProcessDefinitionImpl, NetBpm"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            column="processDefinition"
+        />
+
+        <many-to-one
+            name="RootFlow"
+            class="NetBpm.Workflow.Execution.Impl.FlowImpl, NetBpm"
+            cascade="all"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            column="rootFlow"
+        />
+
+        <many-to-one
+            name="SuperProcessFlow"
+            class="NetBpm.Workflow.Execution.Impl.FlowImpl, NetBpm"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            column="superProcessFlow"
+        />
+    </class>
+
+</hibernate-mapping>

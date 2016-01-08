@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE document PUBLIC "-//APACHE//DTD Documentation V2.0//EN" "http://forrest.apache.org/dtd/document-v20.dtd">
+<document>
+  <header>
+    <title>NetBpm, Installation</title>
+  </header>
+  <body>
+    <section>
+      <title>Requirements</title>
+      <ul>
+        <li>
+          <a href="http://msdn.microsoft.com/netframework/downloads/howtoget.asp">The Microsoft .Net Framework 1.1</a>
+        </li>
+        <li>A relational database. All scripts are tested with <a href="http://www.mysql.org">MySql 4.1</a> and MS Sql Server 2000.</li>
+      </ul>
+    </section>
+    <section>
+      <title>Setup</title>
+      <ul>
+        <li>Get the NetBpm distribution from the SourceForge site <a href="http://sf.net/projects/netbpm">http://sf.net/projects/netbpm</a> 
+        (click on files to find the downloads). 
+        Get the latest release bundle unless you are looking for a particular version.
+        </li>
+        <li>Unzip the bundle</li>
+        <li>To prepare the database start with the initialisation of the tables with the script sql/CreateMysql.sql for MySql or sql/CreateSqlServer.sql for MS Sql Server. 
+        For the test and the examples add the organisational data with the script sql/Organisation.sql  
+        </li>
+        <li>Set the nhibernate properties in the file app_config.xml to your environment</li>
+        <li><p><strong>Cassini Installation</strong></p>
+	        <ul>
+		        <li>Register the cassini.dll in the Global Assembly Cache.  You can do this by going to 
+		        Control Panel -> Administrative Tools -> Microsoft .NET Framework 1.1 Configuration.  Right click on Assembly Cache, Select Add.., 
+		        and browse to the Cassini.dll you just installed. Or you can add the assembly by executing gacutil /i C:\ Cassini\location\cassini.dll .</li>
+		        <li>Start the included Cassini webserver with cassini.bat.</li>
+		        <li>To test your installation surf to <a href="http://localhost:8082/intro/index.rails">http://localhost:8082/intro/index.rails</a>.
+		         Login as a user and go to the developer page. There deploy the holiday example by uploading the file example/holiday.par.</li>
+	        </ul>
+        </li>
+        <li><p><strong>IIS Installation</strong></p>
+	        <ul>
+		        <li>Go to Control Panel -> Administrative Tools -> Internet Information Services and add a virtual directory named netbpm. 
+		        The virtual directory point to your installation directory.</li>
+		        <li>Go into IIS manager to the Web application's properties and directory >Configuration (button) > Mappings > Application mappings. 
+		            Add an extension for .rails that points to the aspnet_isapi.dll.
+		        		Make sure that "check that file exists" is unchecked.</li>
+		        <li>If you use IIS in combination with MSSQL Server create a user servername\ASPNET for your database.</li>
+						<li>To test your installation surf to <a href="http://localhost/netbpm/intro/index.rails">http://localhost/netbpm/intro/index.rails</a>.
+						 Login as a user and go to the developer page. There deploy the holiday example by uploading the file example/holiday.par.</li>
+	        </ul>
+        </li>
+        <li><p><strong>Mod_Mono and Apache</strong></p> The installation was tested under Suse Linux 10.
+	        <ul>
+		        <li>extract the NetBpm release in a target folder</li>
+		        <li>add in the file httpd.conf the following line:
+						<table>
+						  <tr>
+						  	<td>
+									<source><![CDATA[
+	LoadModule mono_module /usr/lib64/apache2/mod_mono.so
+	
+	AddHandler mono .rails .aspx .ashx .asmx .ascx .asax .config .ascx
+	Alias /netbpm /data/work/net/projects/netbpm-0.8.3.1
+	AddMonoApplications default "/netbpm:/data/work/net/projects/netbpm-0.8.3.1"
+	MonoRunXSP True
+	<Directory /data/work/net/projects/netbpm-0.8.3.1>
+	    SetHandler mono
+	    Allow from all    
+	</Directory>]]>
+									</source>  
+								</td>
+							</tr>
+						</table>
+		        </li>
+		        <li>restart Apache</li>
+		        <li>To test your installation surf to <a href="http://localhost:8082/intro/index.rails">http://localhost/netbpm/intro/index.rails</a>.
+		         Login as a user and go to the developer page. There deploy the holiday example by uploading the file example/holiday.par.</li>
+				</ul>
+		        A more detailed description can be found at <a href="http://www.castleproject.org/index.php/MonoRail:How_to:_Use_MonoRail_with_Mod_Mono_and_Apache">castle project</a>
+        </li>
+      </ul>
+      <p>If you run into trouble ask in the <a href="http://sourceforge.net/forum/?group_id=150889">form</a> for help.</p>
+    </section>
+  </body>
+</document>

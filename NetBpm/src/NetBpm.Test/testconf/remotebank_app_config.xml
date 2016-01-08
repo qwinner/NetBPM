@@ -1,0 +1,56 @@
+<configuration>
+	<components>
+		<component id="BankA" 
+			service="NetBpm.Test.Bank.EComp.IBankA, NetBpm.Test" 
+			type="NetBpm.Test.Bank.EComp.Impl.BankAEComp, NetBpm.Test" 
+			remoteserver="singleton" uri="BankA"/>
+
+		<component id="BankB" 
+			service="NetBpm.Test.Bank.EComp.IBankB, NetBpm.Test" 
+			type="NetBpm.Test.Bank.EComp.Impl.BankBEComp, NetBpm.Test" 
+			remoteserver="singleton" uri="BankB"/>
+	</components>
+
+	<facilities>
+    <facility 
+		id="remote.facility" 
+		type="Castle.Facilities.Remoting.RemotingFacility, Castle.MicroKernel"
+		remotingConfigurationFile="../../../NetBpm.Test/RemotingTcpConfig.config">
+    
+    </facility>
+
+		<facility 
+			id="transactions" 
+			type="Castle.Facilities.AutomaticTransactionManagement.TransactionFacility, Castle.Facilities.AutomaticTransactionManagement"/>
+
+		<facility id="nhibernate"
+			type="Castle.Facilities.NHibernateIntegration.NHibernateFacility, Castle.Facilities.NHibernateIntegration">
+			<factory id="nhibernate.factory">
+				<!-- MYSQL Config -->
+<!--
+				<settings>
+					<item key="hibernate.connection.provider">NHibernate.Connection.DriverConnectionProvider</item>
+					<item key="hibernate.connection.driver_class">NHibernate.Driver.MySqlDataDriver</item>
+					<item key="hibernate.connection.connection_string">Database=nbpm;Data Source=localhost;User Id=nbpm;Password=nbpm</item>
+					<item key="hibernate.dialect">NHibernate.Dialect.MySQLDialect</item>
+				</settings>
+-->
+				<!-- MSSql Config-->
+				<settings>
+					<item key="hibernate.connection.driver_class">NHibernate.Driver.SqlClientDriver</item>
+					<item key="hibernate.dialect">NHibernate.Dialect.MsSql2000Dialect</item>
+					<item key="hibernate.connection.provider">NHibernate.Connection.DriverConnectionProvider</item>
+					<item key="hibernate.connection.connection_string">Data Source=.;Initial Catalog=nbpm;Integrated Security=SSPI</item>
+				</settings>
+
+	 			<assemblies>
+	 	 				<assembly>NetBpm.Test</assembly>
+	 			</assemblies>
+			</factory>
+		</facility>
+		<facility 
+			id="transactions" 
+			type="Castle.Facilities.AutomaticTransactionManagement.TransactionFacility, Castle.Facilities.AutomaticTransactionManagement"/>
+  </facilities>
+
+</configuration>

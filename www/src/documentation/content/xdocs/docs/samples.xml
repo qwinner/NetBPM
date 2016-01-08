@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE document PUBLIC "-//APACHE//DTD Documentation V2.0//EN" "http://forrest.apache.org/dtd/document-v20.dtd">
+<document>
+  <header>
+    <title>The NetBpm Samples</title>
+  </header>
+  <body>
+    <section>
+      <title>Hello world 1</title>
+      <fixme author="pbolle">write a introduction</fixme>
+      <fixme author="pbolle">add the location of the examples</fixme>
+			
+			<p>Business processes in NetBpm are modelled and expressed in xml and other files.  All the
+			files that define one business process are ziped together in what we call a process archive 
+			(see also <a href="npdl.html#processarchives">Process Archives</a>)  So lets build our
+			first process archive.  We'll start with the simples possible case : one start-node, one activity-state
+			and one end-node.
+			</p>
+			<figure src="../images/helloworld1.gif" alt="The simplest business process"/>
+			<p><em>The simplest business process</em></p>
+			<p>First I'll explain what can be seen on the diagram : The upper full circle is the start-state.
+			When a process instance is started in the NetBpm-engine, the runtime-state is calculated. In this case
+			it will be the engine will put the root-flow of the new process instance in the activity state 'first activity
+			state'.  Activity-states are states like in a state machine.  The NetBpm-engine will make sure that state-changes
+			occur transactional.  So creating an instance of the process 'Hello World 1' will cause the engine to put
+			the root-flow in the activity state 'first activity state' and then wait for an external trigger.  Providing
+			the external trigger is what we call performing the activity.  When a user or system provide this trigger,
+			the engine will calculate the next state of the process instance in a transactional way.  In case of the 
+			activity-state 'first activity state' the next state will be the end state which will cause the process instance
+			to finish.  If you are asking yourself "what about actions which are executed automatic initiated by the business 
+			process ?", see hello world 2.
+			</p>
+			
+			<p>Note that the core NetBpm engine is a component.  The component has an API but no graphical interface.
+			That is why we build a web-application that exposes the core NetBpm API's to web-users.  In the process
+			archive the web-application information is completly separated from the information that describes the
+			business process logic.  So note that all information web-app related information that we will present here
+			is optional.
+			</p>
+			
+			<p>The first file to write is the <code>processdefinition.xml</code> file.  That one contains the logic of the business
+			process.  Here's the <code>processdefinition.xml</code> of the helloworld1.par.
+			</p>
+			<table>
+			  <tr>
+			  	<td>
+						<source>
+	&lt;?xml version="1.0"?&gt;
+		
+	&lt;process-definition&gt;
+	
+	  &lt;name&gt;Hello world 1&lt;/name&gt;
+	  &lt;description&gt;This is the simples process.&lt;/description&gt;
+	
+	  &lt;start-state name="start"&gt;
+	    &lt;transition to="first activity state" /&gt;
+	  &lt;/start-state&gt;
+	
+	  &lt;end-state name="end" /&gt;
+	
+	  &lt;activity-state name="first activity state"&gt;
+	    &lt;description&gt;this is the first state&lt;/description&gt;
+	    &lt;assignment handler="NetBpm.Workflow.Delegation.Impl.Assignment.AssignmentExpressionResolver, NetBpm"&gt;
+	      &lt;parameter name="expression"&gt;processInitiator&lt;/parameter&gt;
+	    &lt;/assignment&gt;
+	    &lt;transition to="end" /&gt;
+	  &lt;/activity-state&gt;
+	
+	&lt;/process-definition&gt;
+						</source>  
+					</td>
+				</tr>
+			</table>
+			<p><em>the processdefinition.xml for the Hello World 1 process</em></p>
+			<p>The <code>processdefinition.xml</code> is in fact all the NetBpm engine needs to 
+			know about your process.  But to allow you to execute this process we'll make use
+			of the NetBpm web-application. Therefor we will add 2 files to the process archive : 
+			<code>web/helloworld1.gif</code> and <code>web/webinterface.xml</code>.  The <code>web/helloworld1.gif</code>
+			is the image that you see above.  The <code>web/webinterface.xml</code> provides the
+			engine with a little extra information so it can generate the forms for performing
+			activities.  This is how the <code>web/webinterface.xml</code> of the helloworld1.par looks
+			like : 
+			</p>
+			<table>
+			  <tr>
+			  	<td>
+						<source>
+	&lt;?xml version="1.0"?&gt;
+	
+	&lt;web-interface&gt;
+	
+	  &lt;image name="web/helloworld1.gif" mime-type="image/gif" width="104" height="155" /&gt;
+	
+	  &lt;!-- ================ --&gt;
+	  &lt;!-- == ACTIVITIES == --&gt;
+	  &lt;!-- ================ --&gt;
+	  &lt;activity-state name="start"&gt;
+	    &lt;image-coordinates&gt;
+	      &lt;x1&gt;43&lt;/x1&gt;
+	      &lt;y1&gt;0&lt;/y1&gt;
+	      &lt;x2&gt;65&lt;/x2&gt;
+	      &lt;y2&gt;21&lt;/y2&gt;
+	    &lt;/image-coordinates&gt;
+	  &lt;/activity-state&gt;
+	
+	  &lt;activity-state name="first activity state"&gt;
+	    &lt;image-coordinates&gt;
+	      &lt;x1&gt;0&lt;/x1&gt;
+	      &lt;y1&gt;51&lt;/y1&gt;
+	      &lt;x2&gt;101&lt;/x2&gt;
+	      &lt;y2&gt;78&lt;/y2&gt;
+	    &lt;/image-coordinates&gt;
+	  &lt;/activity-state&gt;
+	  
+	&lt;/web-interface&gt;
+						</source>  
+					</td>
+				</tr>
+			</table>
+			<p><em>the optional web-form-generation</em></p>
+			<p>The 3 files <code>processdefinition.xml</code>, <code>web/helloworld1.gif</code> and <code>web/webinterface.xml</code>
+			are then ziped together in a process archive with the following layout : 
+			</p>
+			<table>
+			  <tr>
+			  	<td>
+						<source>
+	/root
+	  |
+	  +- processdefinition.xml
+	  |
+	  +- web
+	      +- webinterface.xml
+	      +- helloworld1.gif
+						</source>  
+					</td>
+				</tr>
+			</table>
+			<p><em>the helloworld1.par process archive</em></p>
+			<p>This process archive can now be deployed in the NetBpm engine.  Deploying means that
+			the information in the process archive is parsed and stored in the NetBpm database.
+			The NetBpm runtime engine will use process definition information in the database 
+			to manage the process executions.  The state of the process executions is managed
+			in different tables of the same database.
+			</p>
+    </section>
+    <section>
+      <title>Hello world 2</title>
+      <p>
+			The second hello world example will add an action to the first hello world process.  
+			An action is an automatic action that has to be executed on an event that is triggered related to the
+			process execution.  Typical actions would be sending emails, putting a message on the 
+			message broker, calling a web-service somewhere, ...  For flexibility, a process developer
+			can provide his own ActionHandler implementations in the process archive.  This means that a 
+			process developer implements the ActionHandler interface 
+      </p>
+			<table>
+			  <tr>
+			  	<td>
+						<source>
+	public interface IActionHandler {
+	  void Run( IActionContext actionContext );
+	}
+						</source>  
+					</td>
+				</tr>
+			</table>
+			<p><em>The ActionHandler interface</em></p>
+      <p>
+			and puts the .dll file directly in the process archive or in the path of NetBpm. 
+      </p>
+			<note>dynamic loading of assemblies is not yet supported</note>			
+      <p>
+			Since this manual is targetted at 
+			developers, we have chosen for a very meaningfull :-) action that prints 'HELLO WORLD' to the 
+			logfile : 
+      </p>
+			<table>
+			  <tr>
+			  	<td>
+						<source>
+	public class HelloWorldAction : IActionHandler
+	{
+		private static readonly ILog log = LogManager.GetLogger(typeof (HelloWorldAction));
+		
+		public virtual void  Run(IActionContext actionContext)
+		{
+			// Lets show that we have been here :-) 
+			log.Debug(" ");
+			log.Debug("H   H EEEEE L     L      OOO      W   W  OOO  RRRR  L     DDDD ");
+			log.Debug("H   H E     L     L     O   O     W   W O   O R   R L     D   D");
+			log.Debug("HHHHH EEE   L     L     O   O     W   W O   O R   R L     D   D");
+			log.Debug("H   H E     L     L     O   O     W W W O   O RRRR  L     D   D");
+			log.Debug("H   H E     L     L     O   O     W W W O   O R  R  L     D   D");
+			log.Debug("H   H EEEEE LLLLL LLLLL  OOO       W W   OOO  R   R LLLLL DDDD ");
+			log.Debug(" ");
+			
+			// The next log message will be stored in the netbpm-logs of the flow. 
+			actionContext.AddLog("HELLO WORLD");
+		}
+	}
+						</source>  
+					</td>
+				</tr>
+			</table>
+			<p><em>The HelloWorldAction implementation</em></p>
+			<p>Note that you can do much more meaningfull stuff in an ActionHandler implementation
+			because you can access the process instance attributes (see hello world version 3) on the
+			one hand and your complete IT-environment. So ActionHandlers can be used for 2-way communication
+			between the process and e.g. an SAP-system, a database, ...
+			</p>
+			
+			<p>In the <code>processdefinition.xml</code>, the action will be scheduled on the transition 
+			from 'first activity state' to the end-state : 
+      </p>
+			<table>
+			  <tr>
+			  	<td>
+						<source>
+  ...
+  &lt;activity-state name="first activity state"&gt;
+    &lt;description&gt;this is the first state&lt;/description&gt;
+    &lt;assignment handler="NetBpm.Workflow.Delegation.Impl.Assignment.AssignmentExpressionResolver, NetBpm"&gt;
+      &lt;parameter name="expression"&gt;processInitiator&lt;/parameter&gt;
+    &lt;/assignment&gt;
+    <strong>
+    &lt;transition to="end"&gt;
+      &lt;action event="transition" handler="NetBpm.Example.Delegate.HelloWorldAction, NetBpm.Example" /&gt;
+    &lt;/transition&gt;
+    </strong>
+  &lt;/activity-state&gt;
+  ...
+						</source>  
+					</td>
+				</tr>
+			</table>
+			<p><em>the changes in processdefinition.xml for the Hello World 2 process</em></p>
+    </section>
+    <section>
+      <title>Hello world 3</title>
+      <p>
+			The third version of the Hello World process will add 2 attributes to the process.  Attributes
+			are also called process-variables.  The nice thing about attributes in NetBpm is that they
+			are simple .Net objects.  This means that you are not bound to a predefined set
+			of types.  NetBpm handles persistent storage of attribute values by means of <code>Serializer</code>s.
+			Serializers convert the values in the attributes (the POJO's) to text and also the other way round : 
+      </p>
+			<table>
+			  <tr>
+			  	<td>
+						<source>
+	public interface ISerializer : IConfigurable 
+	{
+		String Serialize(Object valueObject);
+		Object Deserialize(String text);
+	}
+						</source>  
+					</td>
+				</tr>
+			</table>
+			<p><em>The Serializer interface</em></p>
+      <p>
+			The basic way to specify an attribute in the <code>processdefinition.xml</code> is by specifying the 
+			serializer implementation class-name.  However, NetBpm contains a number of default serializers for the
+			most standard types. These can be specified as shortcuts with the type attribute.  see the nPdl reference
+			documentation for learning which type names correspond to which serializer implementation.
+			</p>
+			<p>This is how to specify attributes in the <code>processdefinition.xml</code> : </p>
+			<table>
+			  <tr>
+			  	<td>
+						<source>
+  ...
+  						<strong>
+  &lt;attribute name="evaluation result"
+             serializer="NetBpm.Workflow.Delegation.Impl.Serializer.EvaluationSerializer, NetBpm" /&gt;
+
+  &lt;attribute name="the text attrib"
+             type="text"
+             initial-value=":-)" /&gt;
+  						</strong>
+  ...
+						</source>  
+					</td>
+				</tr>
+			</table>
+			<p><em>Specifying attributes in the processdefinition.xml</em></p>
+    </section>
+    <section>
+      <title>Hello world 4</title>
+			<p>
+			The forth version of the hello world process adds a decision.  Decisions are also based on an interface : 
+			The DecisionHandler interface : 
+			</p>
+			<table>
+			  <tr>
+			  	<td>
+						<source>
+	public interface IDecisionHandler
+	{
+		String Decide(IDecisionContext decisionContext);
+	}
+						</source>  
+					</td>
+				</tr>
+			</table>
+			<p><em>The DecisionHandler interface</em></p>
+			<p>
+			Whenever the execution arrives at a decision, a DecisionHandler implementation will be called.  As for all
+			delegation implementation classes, in a process definition you can use the NetBpm provided default implementations
+			of you can write you custom DecisionHandler implementation and add it in the process archive.
+			</p>
+			<p>In this example we will use the <code>NetBpm.Workflow.Delegation.Impl.Serializer.EvaluationSerializer</code>, which is 
+			a default implementation available in NetBpm. (so we can use it without including it in the process archive).
+			The EvaluationDecision will decide on the basis of the 'evaluation result' attribute value.  If the
+			decision result contains an approval, the process is finished otherwise, the process is put back in the
+			'first activity state'.  This can be seen in the graph : 
+			</p>
+			<figure src="../images/helloworld4.gif" alt="The simplest business process extended with a decision"/>
+			<p><em>The simplest business process extended with a decision</em></p>
+			<p>
+			This is how we express the decision in the <code>processdefinition.xml</code> :
+			</p>
+			<table>
+			  <tr>
+			  	<td>
+						<source>
+  ...
+
+  &lt;activity-state name="first activity state"&gt;
+    ...
+    &lt;transition <strong>to="the looping decision"</strong>&gt;
+      &lt;action event="transition" handler="NetBpm.Example.Delegate.HelloWorldAction, NetBpm.Example" /&gt;
+    &lt;/transition&gt;
+  &lt;/activity-state&gt;
+
+  <strong>
+  &lt;decision name="the looping decision" handler="NetBpm.Workflow.Delegation.Impl.Decision.EvaluationDecision, NetBpm"&gt;
+    &lt;parameter name="attribute"&gt;evaluation result&lt;/parameter&gt;
+    &lt;transition name="disapprove" to="first activity state" /&gt;
+    &lt;transition name="approve"    to="end" /&gt;
+  &lt;/decision&gt;
+  </strong>
+
+  ...
+						</source>  
+					</td>
+				</tr>
+			</table>
+			<p><em>Specifying a decision in the processdefinition.xml</em></p>
+			<p>The decision also shows another interesting characteristic : The delegation classes
+			can be configured.  So it is possible to pass parameters via the processdefinition.xml to
+			the delegation implementation objects. This mechanism enables the writing of reusable 
+			delegation classes.
+			</p>
+    </section>
+  </body>
+</document>
